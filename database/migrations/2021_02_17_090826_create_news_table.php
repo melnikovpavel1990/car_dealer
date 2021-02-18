@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateModelsTable extends Migration
+class CreateNewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,19 @@ class CreateModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('models', function (Blueprint $table) {
+        Schema::create('news', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('mark_id')->nullable(false);
-            $table->text('model', 255);
+            $table->string('title')->nullable();
+            $table->text('content');
+            $table->unsignedBigInteger('author_id')->nullable(false);
+            $table->text('image')->nullable();
             $table->timestamps();
-
         });
-        Schema::table('models', function($table)
+        Schema::table('news', function($table)
         {
-            $table->foreign('mark_id')
+            $table->foreign('author_id')
                 ->references('id')
-                ->on('markas');
+                ->on('authors');
         });
     }
 
@@ -35,6 +36,6 @@ class CreateModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('models');
+        Schema::dropIfExists('news');
     }
 }

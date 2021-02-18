@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\CarModel;
-use App\Models\Marka;
+use App\Models\Author;
+use App\Models\News;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class NewsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
-
+        $news = News::all();
+        return view('admin.news.index', compact('news'));
     }
 
     /**
@@ -27,7 +27,9 @@ class AdminController extends Controller
      */
     public function create()
     {
-//        return view('admin.car_model.create');
+        $authors = Author::get();
+        return view('admin.news.create', compact('authors'));
+
     }
 
     /**
@@ -38,8 +40,9 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-//        Marka::create($request->except('_token'));
-//        return redirect()->route('admin_car_model');
+        News::create($request->except('_token'));
+        $authors = Author::get();
+        return redirect()->route('admin_news', compact('authors'));
     }
 
     /**
@@ -50,7 +53,7 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-//        $mark = Marka::find($id);
+        //
     }
 
     /**
@@ -61,8 +64,10 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-//        $mark = Marka::findOrFail($id);
-//        return view('admin.car_model.edit', ['mark' => $marke]);
+        $new = News::findOrFail($id);
+//        $new -> author_id = null;
+        $authors = Author::get();
+        return view('admin.news.edit', compact('new', 'authors'));
     }
 
     /**
@@ -74,7 +79,12 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $new = News::find('$id');
+        dd($new);
+        $new->fill($request->all());
+        $new -> save();
+        dump($news);
+        return redirect()->route('admin_news', compact('authors'));
     }
 
     /**
@@ -85,6 +95,7 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        News::destroy($id);
+        return view('admin_new');
     }
 }

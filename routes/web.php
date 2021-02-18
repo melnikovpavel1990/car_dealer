@@ -15,20 +15,27 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'SiteController@index')->name('Home');
 Route::get('/product', 'SiteController@product')->name('Product');
-Route::get('/news', 'SiteController@news')->name('News');
+Route::get('/news', 'SiteController@news')->name('news');
 Route::get('/autoads', 'SiteController@autoads')->name('AutoAds');
 Route::get('/contacts', 'SiteController@contacts')->name('Contacts');
-Route::get('/product/create', 'SiteController@postad')->name('PostAd');
+Route::get('/product/create', 'AddController@index')->name('PostAd');
+Route::post('/telegram', 'SiteController@telegram')->name('telegram');
 
 Route::get('/admins', 'Admin\\AdminController@index')->name('admin');
-Route::get('/admins/carmodel', 'Admin\\AdminController@index')->name('admin_car_model');
-Route::get('/admins/carmodel/create', 'Admin\\AdminController@create')->name('admin_car_model_create');
-Route::post('/admins/carmodel/create', 'Admin\\AdminController@store')->name('admin_model_store');
-Route::get('/admins/carmodel/{id}/create', 'Admin\\AdminController@edit')->name('admin_model_edit');
+Route::get('/admins/news', 'Admin\\NewsController@index')->name('admin_news');
+Route::get('/admins/news/create', 'Admin\\NewsController@create')->name('admin_news_create');
+Route::post('/admins/news/create', 'Admin\\NewsController@store')->name('admin_news_store');
+Route::get('/admins/news/{id}/edit', 'Admin\\NewsController@edit')->name('admin_news_edit');
+Route::put('/admins/news/{id}/update', 'Admin\\NewsController@update')->name('admin_news_update');
+Route::delete('/admins/news/{id}/delete', 'Admin\\NewsController@destroy')->name('admin_news_destroy');
+
+//Route::get('/admins/carmodel/create', 'Admin\\AdminController@create')->name('admin_car_model_create');
+//Route::post('/admins/carmodel/create', 'Admin\\AdminController@store')->name('admin_model_store');
+//Route::get('/admins/carmodel/{id}/create', 'Admin\\AdminController@edit')->name('admin_model_edit');
 //Route::prefix('admins')->namespace('Admin')//->middleware(['role:admin'])
 //    ->group(function () {
-//        Route::get('/', 'CategoryController@index')->name('dashboard');
-//        Route::resource('/category', 'CategoryController')->names('admin.category');
+//        Route::get('/', 'AdminController@index')->name('dashboard');
+//        Route::resource('/news', 'NewsController')->names('admin.news');
 //        Route::resource('/company', 'CompanyController')->names('admin.company');
 //    });
 

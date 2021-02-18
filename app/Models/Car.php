@@ -6,5 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Car extends Model
 {
-    //
+    protected $fillable = ['mark_id', 'model_id', 'transmission_id', 'year', 'color_id', 'power',
+        'fuel_id', 'location_id', 'city_id', 'price', 'milleage', 'title', 'description', 'Bluetooth',
+        'air_conditioning', 'GPS', 'heated_seats', 'power_seat', 'speed_control', 'ABS', 'airbag', 'alarm',
+        'fog_lights', 'heated_mirrors', 'tow_package'];
+
+    public function mark()
+    {
+        return $this->belongsTo(CarMark::class);
+    }
+
 }
+

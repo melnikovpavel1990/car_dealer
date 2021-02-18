@@ -42,32 +42,21 @@
 
                     <h3 class="widget-title">Contact Us</h3>
 
-                    <form method="post" action="#" class="contact-form" id="contactform">
-
+                    <form METHOD="post" action="{{route('telegram')}}" class="contact-form" id="contactform">
+                        @csrf
                         <p class="input-block">
-                            <label for="name">Your Name (required)</label>
+                            <label for="name">Your Name </label>
                             <input type="text" name="name" id="name" />
                         </p>
 
                         <p class="input-block">
-                            <label for="email">Your Email (required)</label>
+                            <label for="email">Your Email </label>
                             <input type="text" name="email" id="email" />
                         </p>
 
                         <p class="input-block">
-                            <label for="web">Website</label>
-                            <input type="text" name="web" id="web" />
-                        </p>
-
-                        <p class="input-block">
-                            <label for="message">You Message: (required)</label>
+                            <label for="message">You Message: </label>
                             <textarea name="message" id="message" cols="30" rows="10"></textarea>
-                        </p>
-
-                        <p class="input-block">
-                            <label for="verify">Are you human?</label>
-                            <iframe src="php/capcha_page.html" height="29" width="80" scrolling="no" frameborder="0" marginheight="0" marginwidth="0" class="capcha_image_frame" name="capcha_image_frame"></iframe>
-                            <input class="verify" type="text" id="verify" name="verify" />
                         </p>
 
                         <p class="input-block">

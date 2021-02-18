@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ asset("css/style.css") }}" media="screen" />
     <link rel="stylesheet" href="{{ asset("css/skeleton.css") }}" media="screen" />
     <link rel="stylesheet" href="{{ asset("sliders/flexslider/flexslider.css") }}" media="screen" />
-    <link rel="stylesheet" href="{{ asset("fancybox/jquery.fancybox.css") }}" media="screen" />
+{{--    <link rel="stylesheet" href="{{ asset("fancybox/jquery.fancybox.css") }}" media="screen" />--}}
 
 
     <!-- HTML5 Shiv + detect touch events -->
@@ -30,8 +30,6 @@
 
     <header id="header" class="clearfix">
 
-        <a href="{{route('Home')}}" id="logo"><img src="images/logo.png" alt="Car Dealer"></a>
-
         <div class="widget-container widget_search">
 
             <span class="call"><span>+1 234</span> 567-8901</span><br />
@@ -42,12 +40,13 @@
         </div>
         <!--/ .widget-container-->
 
+        <h1 class="widget-title" style="margin-top: 50px;">Car Dealer</h1>
         <nav id="navigation" class="navigation">
 
             <ul>
                 <li><a href="{{ route('Home') }}">Home</a></li>
                 <li><a href="{{ route('AutoAds') }}">Auto ads</a></li>
-                <li><a href="{{ route('News') }}">News</a></li>
+                <li><a href="{{ route('news') }}">News</a></li>
                 <li><a href="{{ route('Contacts') }}">Contacts</a></li>
                 <li><a href="{{ route('admin') }}">Admin</a></li>
                 <li style="margin-left: 560px"><a href="{{ route('PostAd') }}">Post an ad</a></li>
@@ -202,8 +201,8 @@
     </footer><!--/ #footer-->
 
     <!-- - - - - - - - - - - - - - - end Footer - - - - - - - - - - - - - - - - -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/jquery-1.7.2.min.js"><\/script>')</script>
+{{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>--}}
+{{--    <script>window.jQuery || document.write('<script src="js/jquery-1.7.2.min.js"><\/script>')</script>--}}
     <!--[if lt IE 9]>
     <script src="js/selectivizr-and-extra-selectors.min.js"></script>
     <![endif]-->
