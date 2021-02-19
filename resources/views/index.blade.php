@@ -540,12 +540,12 @@
                         <h3 class="widget-title">Recent News</h3>
 
                         <ul>
-                            <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing</a></li>
-                            <li><a href="#">Ipsum dolor sit amet, consectetur adipisicing</a></li>
-                            <li><a href="#">Set magna ipsum dolor sit amet, consectetur adipisicing</a></li>
+                            @foreach($news as $new)
+                            <li><a href="{{route('new', ['id' => $new->id])}}">{{$new->title}}</a></li>
+                            @endforeach
                         </ul>
 
-                        <a href="#" class="see">See all news</a>
+                        <a href="{{route('news')}}" class="see">See all news</a>
 
                     </div><!--/ .widget-container-->
 

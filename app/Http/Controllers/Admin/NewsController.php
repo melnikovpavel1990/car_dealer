@@ -16,7 +16,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::all();
+        $news = News::orderBy('id', 'DESC')->paginate(3);//->get();
         return view('admin.news.index', compact('news'));
     }
 
@@ -35,20 +35,22 @@ class NewsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        News::create($request->except('_token'));
-        $authors = Author::get();
-        return redirect()->route('admin_news', compact('authors'));
+        $path = $request->file('image')->store('public/news');
+        $params = $request->all();
+        $params['image'] = $path;
+        News::create($params, $request->except('_token'));
+        return redirect()->route('admin_news');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -59,13 +61,12 @@ class NewsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $new = News::findOrFail($id);
-//        $new -> author_id = null;
         $authors = Author::get();
         return view('admin.news.edit', compact('new', 'authors'));
     }
@@ -73,29 +74,30 @@ class NewsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $new = News::find('$id');
-        dd($new);
+        $new = News::findOrFail($id);
         $new->fill($request->all());
-        $new -> save();
-        dump($news);
-        return redirect()->route('admin_news', compact('authors'));
+        $new->save();
+        return redirect()->route('admin_news');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(News $new, $id)
     {
-        News::destroy($id);
-        return view('admin_new');
+//        News::find($id) -> destroy($id);
+        $new = News::find($id);
+        $new->delete();
+        //News::destroy($id);
+        return redirect()->route('admin_news');
     }
 }

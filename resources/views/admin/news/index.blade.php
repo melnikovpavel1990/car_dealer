@@ -33,14 +33,18 @@
 
                                     <td>{{$new->title}}</td>
                                     <td>{{$new->author_id}}</td>
-                                    <td>{{$new->content}}</td>
+                                    <td>{{mb_substr($new->content, 0, 50)}}...</td>
                                     <td>
+                                        <form action="{{route('admin_news_destroy', $new)}}" method="post">
                                         <a class="btn btn-info"
                                            href="{{route('admin_news_edit', ['id' => $new->id])}}">Редактировать
                                         </a>
+                                            @csrf
+                                        @method('DELETE')
                                         <a class="btn btn-danger"
                                            href="{{route('admin_news_destroy', ['id' => $new->id])}}">Delete
                                         </a>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

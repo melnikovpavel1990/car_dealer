@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\CarChar;
 use App\Models\CarModel;
 use App\Models\Marka;
 use App\Models\Model;
+use App\Models\News;
 use Illuminate\Http\Request;
 
 class SiteController extends Controller
 {
     public function index()
     {
-        return view('index');
+        $news = News::orderBy('id', 'DESC')->paginate(3);
+        return view('index', compact('news'));
     }
 
     public function product()
@@ -22,17 +25,27 @@ class SiteController extends Controller
 
     public function news()
     {
-        return view('news');
+        $news = News::get();
+        return view('news', compact('news'));
+    }
+
+    public function new($id)
+    {
+        $authors = Author::get();
+        $news = News::findOrFail($id);
+        return view('new', compact('news', $authors));
     }
 
     public function autoads()
     {
         return view('autoads');
     }
+
     public function contacts()
     {
         return view('contacts');
     }
+
     public function telegram()
     {
         $name = $_POST['name'];
@@ -45,9 +58,7 @@ class SiteController extends Controller
             'email' => $email,
             'message' => $message
         );
-        $txt =null;
-//        $key = null;
-//        $value =null;
+        $txt = null;
         return view('telegram', compact('token', 'message', 'chat_id', 'arr', 'txt'));
     }
 }

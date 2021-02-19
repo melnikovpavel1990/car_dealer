@@ -3,139 +3,33 @@
 
 @section('content')
 
-<div class="main">
-
+    <div class="main">
 
 
         <section id="content" class="two-thirds column">
 
-            <h3 class="section-title">News</h3>
+            <h2 class="section-title">News</h2>
+            @foreach($news as $new)
+                <article class="entry clearfix secondary">
 
-            <article class="entry clearfix secondary">
+                    <img class="entry-image" alt="" src="{{ Storage::url($new->image) }}">
 
-                <a href="blog-single.html"><img class="entry-image" alt="" src="/images/temp/thumb-6.jpg"></a>
+                    <div class="entry-body">
 
-                <div class="entry-body">
+                        <span class="date"><b>Date:</b>{{" ".substr($new -> updated_at, 0, 10)}}</span>
 
-                    <span class="date"><b>Date:</b>&nbsp;<a href="#">November 27, 2011</a></span>
+                        <a href="{{route('new', ['id' => $new->id])}}">
+                            <h2 class="title">{{$new -> title}}</h2>
+                        </a>
 
-                    <a href="blog-single.html">
-                        <h6 class="title">Consectetur adipisicing elit, sed do eiusmod</h6>
-                    </a>
+                        <p style="font-size: 20px">
+                            {{mb_substr($new -> content, 0, 260)}}...
+                        </p>
 
-                    <p>
-                        Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
-                        <a href="blog-single.html" class="details">Details</a>
-                    </p>
+                    </div><!--/ .entry-body-->
 
-                </div><!--/ .entry-body-->
-
-            </article><!--/ .entry-->
-
-            <article class="entry clearfix secondary">
-
-                <a href="blog-single.html"><img class="entry-image" alt="" src="/images/temp/thumb-7.jpg"></a>
-
-                <div class="entry-body">
-
-                    <span class="date"><b>Date:</b>&nbsp;<a href="#">November 27, 2011</a></span>
-
-                    <a href="blog-single.html">
-                        <h6 class="title">Consectetur adipisicing elit, sed do eiusmod</h6>
-                    </a>
-
-                    <p>
-                        Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
-                        <a href="blog-single.html" class="details">Details</a>
-                    </p>
-
-                </div><!--/ .entry-body-->
-
-            </article><!--/ .entry-->
-
-            <article class="entry clearfix secondary">
-
-                <a href="blog-single.html"><img class="entry-image" alt="" src="/images/temp/thumb-6.jpg"></a>
-
-                <div class="entry-body">
-
-                    <span class="date"><b>Date:</b>&nbsp;<a href="#">November 27, 2011</a></span>
-
-                    <a href="blog-single.html">
-                        <h6 class="title">Consectetur adipisicing elit, sed do eiusmod</h6>
-                    </a>
-
-                    <p>
-                        Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
-                        <a href="blog-single.html" class="details">Details</a>
-                    </p>
-
-                </div><!--/ .entry-body-->
-
-            </article><!--/ .entry-->
-
-            <article class="entry clearfix secondary">
-
-                <a href="blog-single.html"><img class="entry-image" alt="" src="/images/temp/thumb-7.jpg"></a>
-
-                <div class="entry-body">
-
-                    <span class="date"><b>Date:</b>&nbsp;<a href="#">November 27, 2011</a></span>
-
-                    <a href="blog-single.html">
-                        <h6 class="title">Consectetur adipisicing elit, sed do eiusmod</h6>
-                    </a>
-
-                    <p>
-                        Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
-                        <a href="blog-single.html" class="details">Details</a>
-                    </p>
-
-                </div><!--/ .entry-body-->
-
-            </article><!--/ .entry-->
-
-            <article class="entry clearfix secondary">
-
-                <a href="blog-single.html"><img class="entry-image" alt="" src="/images/temp/thumb-6.jpg"></a>
-
-                <div class="entry-body">
-
-                    <span class="date"><b>Date:</b>&nbsp;<a href="#">November 27, 2011</a></span>
-
-                    <a href="blog-single.html">
-                        <h6 class="title">Consectetur adipisicing elit, sed do eiusmod</h6>
-                    </a>
-
-                    <p>
-                        Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
-                        <a href="blog-single.html" class="details">Details</a>
-                    </p>
-
-                </div><!--/ .entry-body-->
-
-            </article><!--/ .entry-->
-
-            <article class="entry clearfix secondary">
-
-                <a href="blog-single.html"><img class="entry-image" alt="" src="/images/temp/thumb-7.jpg"></a>
-
-                <div class="entry-body">
-
-                    <span class="date"><b>Date:</b>&nbsp;<a href="#">November 27, 2011</a></span>
-
-                    <a href="blog-single.html">
-                        <h6 class="title">Consectetur adipisicing elit, sed do eiusmod</h6>
-                    </a>
-
-                    <p>
-                        Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
-                        <a href="blog-single.html" class="details">Details</a>
-                    </p>
-
-                </div><!--/ .entry-body-->
-
-            </article><!--/ .entry-->
+                </article><!--/ .entry-->
+            @endforeach
 
             <div class="wp-pagenavi clearfix">
 
@@ -151,10 +45,10 @@
 
         <!-- - - - - - - - - - - - - - end Content - - - - - - - - - - - - - - - - -->
 
-    </section><!--/.container -->
+        </section><!--/.container -->
 
-    <!-- - - - - - - - - - - - - end Container - - - - - - - - - - - - - - - - -->
+        <!-- - - - - - - - - - - - - end Container - - - - - - - - - - - - - - - - -->
 
-</div>
+    </div>
 
 @endsection

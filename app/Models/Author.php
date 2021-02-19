@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Author extends Model
 {
-    //
+    public function news()
+    {
+        return $this->belongsTo(News::class);
+    }
 }
