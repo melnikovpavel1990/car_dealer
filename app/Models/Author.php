@@ -8,6 +8,6 @@ class Author extends Model
 {
     public function news()
     {
-        return $this->belongsTo(News::class);
+        return $this->hasMany(News::class);
     }
 }

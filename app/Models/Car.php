@@ -13,7 +13,31 @@ class Car extends Model
 
     public function mark()
     {
-        return $this->belongsTo(CarMark::class);
+        return $this->hasMany(CarMark::class);
+    }
+
+    public function model()
+    {
+        return $this->belongsTo(CarModel::class);
+    }
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+    }
+
+    public function fuel()
+    {
+        return $this->belongsTo(Fuel::class);
+    }
+
+    public function transmission()
+    {
+        return $this->belongsTo(Transmission::class);
     }
 
 }

@@ -4,7 +4,8 @@
     <main>
         <div class="container-fluid">
             <div style="margin: 50px">
-                <form action="{{route('admin_news_update', ['id' => $new -> id])}}" enctype = "multipart/form-data" method="POST">
+                <form action="{{route('admin_news_update', ['id' => $new -> id])}}" enctype="multipart/form-data"
+                      method="POST">
                     @csrf
                     @method('put')
                     <div class="form-group">
@@ -15,12 +16,10 @@
                         <label for="exampleFormControlSelect1">Author</label>
                         <select name="author_id" class="form-control" id="" value="{{$new -> author_id}}">
                             @foreach($authors as $author)
-                                {{--            @isset($new)--}}
-                                {{--                @if($new->author_id == $authors->id)--}}
-                                {{--            <li value="">><b>Author:</b>{{$authors -> name}}</li>--}}
-                                {{--                @endif--}}
-                                {{--                @endisset</ul>--}}
-                                <option value="{{$author->id}}">{{$author -> name}}</option>
+
+                                <option value="{{$author->id}}"
+                                        @if($author->id == $new -> author_id) selected @endif>
+                                    {{$author -> name}}</option>
                             @endforeach
                         </select>
                     </div>

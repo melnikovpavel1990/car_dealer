@@ -7,4 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class CarMark extends Model
 {
     protected $fillable = ['mark'];
+
+    public function cars(){
+        return $this->belongsTo(Car::class);
+    }
 }

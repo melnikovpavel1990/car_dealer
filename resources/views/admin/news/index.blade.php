@@ -21,6 +21,7 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                             <tr>
+                                <th>#</th>
                                 <th>Title</th>
                                 <th>Author</th>
                                 <th>Content</th>
@@ -30,20 +31,19 @@
                             <tbody>
                             @foreach($news as $new)
                                 <tr>
-
+                                    <td>{{$new->id}}</td>
                                     <td>{{$new->title}}</td>
-                                    <td>{{$new->author_id}}</td>
+                                    <td>{{$new -> author ->name}}</td>
                                     <td>{{mb_substr($new->content, 0, 50)}}...</td>
                                     <td>
-                                        <form action="{{route('admin_news_destroy', $new)}}" method="post">
+{{--                                        <form action="{{route('admin_news_destroy', $new)}}" method="post">--}}
                                         <a class="btn btn-info"
                                            href="{{route('admin_news_edit', ['id' => $new->id])}}">Редактировать
                                         </a>
+                                            <form action="{{route('admin_news_destroy', ['id' => $new->id])}}" method="post">
                                             @csrf
                                         @method('DELETE')
-                                        <a class="btn btn-danger"
-                                           href="{{route('admin_news_destroy', ['id' => $new->id])}}">Delete
-                                        </a>
+                                        <button class="btn btn-danger">Delete</button>
                                         </form>
                                     </td>
                                 </tr>

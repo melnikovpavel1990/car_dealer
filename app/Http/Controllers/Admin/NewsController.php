@@ -16,7 +16,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::orderBy('id', 'DESC')->paginate(3);//->get();
+        $news = News::orderBy('id', 'DESC')->paginate(6);
         return view('admin.news.index', compact('news'));
     }
 
@@ -94,6 +94,7 @@ class NewsController extends Controller
      */
     public function destroy(News $new, $id)
     {
+        
 //        News::find($id) -> destroy($id);
         $new = News::find($id);
         $new->delete();

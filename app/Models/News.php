@@ -9,8 +9,9 @@ class News extends Model
      protected $fillable = ['title', 'content', 'author_id', 'image'];
 //    protected $guarded = [];
 
-    public function authors()
+    public function author()
     {
-        return $this->hasMany(Author::class);
+        return $this->belongsTo(Author::class);
     }
+
 }

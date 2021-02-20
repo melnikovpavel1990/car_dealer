@@ -7,7 +7,7 @@
         <!-- - - - - - - - - - - - - - - Container - - - - - - - - - - - - - - - - -->
 
         <section class="container content clearfix">
-            <form action="" method="POST">
+            <form action="" enctype="multipart/form-data" method="POST">
                 <div class="form-account">
 
                     <div class="form-heading">
@@ -27,31 +27,29 @@
                         <div class="form-title"><h5>Submit Your Vechicle</h5></div>
 
                         <div class="cart-holder clearfix">
-
-{{--                            @dd($cars)--}}
+                            {{--                            @dd($cars)--}}
                             <div class="cart-content step-1 clearfix">
 
                                 <div class="five columns alpha">
-                                    <form action="">
                                         <p>
                                             <label>Mark:</label>
-                                            <select>
+                                            <select name="mark_id">
                                                 <option selected="selected">Select make</option>
                                                 @foreach($cars as $car)
-                                                    <option value="{{ $car->car_marks->id }}">{{$car->mark}}</option>
+                                                    <option value="{{$car->mark->id}}">{{$car->mark->mark}}</option>
                                                 @endforeach
                                             </select>
                                         </p>
 
                                         <label>Milleage:</label>
-                                        <input type="text">
+                                        <input name="milleage" type="text">
                                         </p>
                                         <p>
                                             <label>Fuel type:</label>
-                                            <select>
-                                                @foreach($fuels as $fuel)
-                                                    <option value="{{ $fuel->id }}">{{$fuel->name}}</option>
-                                                @endforeach
+                                            <select name="fuel_id">
+{{--                                                @foreach($cars as $car)--}}
+{{--                                                    <option value="{{ $car->fuel->id }}">{{$car->fuel}}</option>--}}
+{{--                                                @endforeach--}}
                                             </select>
                                         </p>
 
@@ -62,28 +60,28 @@
 
                                     <p class="not-active">
                                         <label>Model:</label>
-                                        <select>
-                                            @foreach($models as $model)
-                                                <option value="{{ $model->mark_id }}">{{$model->model}}</option>
-                                            @endforeach
+                                        <select name="model_id">
+{{--                                            @foreach($cars as $car)--}}
+{{--                                                <option value="{{ $car->mark->id }}">{{$car->mark}}</option>--}}
+{{--                                            @endforeach--}}
                                         </select>
                                     </p>
                                     <p class="three columns alpha">
                                         <label>Price:</label>
-                                        <input type="text">
+                                        <input name="price" type="text">
                                     </p>
 
                                     <p class="three columns omega">
                                         <label>Year:</label>
-                                        <input type="text">
+                                        <input name="year" type="text">
                                     </p>
 
                                     <p>
                                         <label>Ecterrior color:</label>
-                                        <select>
-                                            @foreach($colors as $color)
-                                                <option value="{{ $color->id }}">{{$color->color}}</option>
-                                            @endforeach
+                                        <select name="color_id">
+{{--                                            @foreach($cars as $car)--}}
+{{--                                                <option value="{{ $car->mark->id }}">{{$car->mark}}</option>--}}
+{{--                                            @endforeach--}}
                                         </select>
 
                                     </p>
@@ -95,40 +93,41 @@
 
                                     <p>
                                         <label>Transmission:</label>
-                                        <select>
-                                            @foreach($transmissions as $transmission)
-                                                <option value="{{$transmission->id}}">{{$transmission->name}}</option>
-                                            @endforeach
+                                        <select name="transmission_id">
+{{--                                            @foreach($cars as $car)--}}
+{{--                                                <option value="{{ $car->mark->id }}">{{$car->mark}}</option>--}}
+{{--                                            @endforeach--}}
                                         </select>
                                     </p>
 
                                     <p class="three columns alpha">
-                                        <label>Engine size:</label>
-                                        <input type="text">
+                                        <label>Power</label>
+                                        <input name="" type="text">
                                     </p>
 
                                     <p class="three columns omega">
-                                        <label>Power:</label>
-                                        <input type="text">
+                                        <label>Engine size:</label>
+                                        <input name="power" type="text">
                                     </p>
 
 
                                     <p class="three columns alpha">
                                         <label>Location:</label>
-                                        <select>
-                                            @foreach($locations as $location)
-                                                <option value="{{$location->id}}">{{$location->location}}</option>
-                                            @endforeach
+                                        <select name="location_id">
+{{--                                            @foreach($cars as $car)--}}
+{{--                                                <option value="{{ $car->mark->id }}">{{$car->mark}}</option>--}}
+{{--                                            @endforeach--}}
                                         </select>
                                     </p>
 
                                     <p class="three columns omega">
                                         <label>City:</label>
-                                        <select>
+                                        <select name="city_id">
                                             <option selected="selected">Select city</option>
-                                            <option value="1">Option 1</option>
-                                            <option value="2">Option 2</option>
-                                            <option value="3">Option 3</option>
+
+                                                <option value="1">Option 1</option>
+                                                <option value="2">Option 2</option>
+                                                <option value="3">Option 3</option>
                                         </select>
                                     </p>
 
@@ -195,13 +194,13 @@
                                     <div class="four columns alpha">
 
                                         <p>
-                                            <label class="input-check"><input type="checkbox"/>ABS:</label>
+                                            <label class="input-check"><input name="ABS" type="checkbox"/>ABS:</label>
                                         </p>
                                         <p>
-                                            <label class="input-check"><input type="checkbox"/>Airbag:</label>
+                                            <label class="input-check"><input name="airbag" type="checkbox"/>Airbag:</label>
                                         </p>
                                         <p>
-                                            <label class="input-check"><input type="checkbox"/>Alarm:</label>
+                                            <label class="input-check"><input name="alarm" type="checkbox"/>Alarm:</label>
                                         </p>
 
                                     </div><!--/ .four-->
@@ -209,13 +208,13 @@
                                     <div class="four columns omega">
 
                                         <p>
-                                            <label class="input-check"><input type="checkbox"/>Fog lights:</label>
+                                            <label class="input-check"><input name="fog_lights" type="checkbox"/>Fog lights:</label>
                                         </p>
                                         <p>
-                                            <label class="input-check"><input type="checkbox"/> Heated mirrors:</label>
+                                            <label class="input-check"><input name="heated_mirrors" type="checkbox"/> Heated mirrors:</label>
                                         </p>
                                         <p>
-                                            <label class="input-check"><input type="checkbox"/> Tow package:</label>
+                                            <label class="input-check"><input name="tow_packag" type="checkbox"/> Tow package:</label>
                                         </p>
 
                                     </div><!--/ .four-->
@@ -228,10 +227,10 @@
 
                                 <div class="upload-holder">
 
-                                    <form action="upload.php" method="post" enctype="multipart/form-data">
+
                                         Select image to upload:
                                         <input type="file" value="Upload Image" name="submit">
-                                    </form>
+
 
                                 </div><!--/ .upload-holder-->
 

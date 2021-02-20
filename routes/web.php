@@ -19,7 +19,7 @@ Route::get('/news', 'SiteController@news')->name('news');
 Route::get('/new/{id}', 'SiteController@new')->name('new');
 Route::get('/autoads', 'SiteController@autoads')->name('AutoAds');
 Route::get('/contacts', 'SiteController@contacts')->name('Contacts');
-Route::get('/product/create', 'AddController@index')->name('PostAd');
+Route::get('/product/create', 'AddController@create')->name('PostAd');
 Route::post('/telegram', 'SiteController@telegram')->name('telegram');
 
 Route::get('/admins', 'Admin\\AdminController@index')->name('admin');

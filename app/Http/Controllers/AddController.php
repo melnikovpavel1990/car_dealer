@@ -16,15 +16,7 @@ class AddController extends Controller
      */
     public function index()
     {
-        $cars = Car::all() -> Join('car_marks', 'car_models', 'cities', 'colors', 'fuels', 'locations', 'transmissions');
-//        $cars = CarMark::all();
-//        $models = CarModel::all();
-//        $cities = City::all();
-//        $colors = Color::all();
-//        $locations  = Location::all();
-//        $fuels = Fuel::all();
-//        $transmissions = Transmission::all();
-        dd($cars->makr);
+        $cars = Car::all();
         return view('product.create', compact('cars'));
 
     }
@@ -36,15 +28,10 @@ class AddController extends Controller
      */
     public function create()
     {
-//        $cars = CarMark::all();
-//        $models = CarModel::all();
-//        $cities = City::all();
-//        $colors = Color::all();
-//        $locations  = Location::all();
-//        $fuels = Fuel::all();
-//        $transmissions = Transmission::all();
-//        return view('product.create', compact('cars', 'models', 'cities', 'colors',
-//            'locations', 'fuels', 'transmissions'));
+        $cars = Car::get();
+        dd($cars);
+        return view('product.create', compact('cars'));
+
     }
 
     /**
