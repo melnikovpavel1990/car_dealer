@@ -27,7 +27,7 @@
                             <b>FAX:</b>&nbsp;<span>+1 (234) 567-8902</span>
                         </li>
                         <li>
-                            <b>Email: <a href="mailto:testmail@sitename.com">testmail@sitename.com</a></b>
+                            <b>Email: <a href="">testmail@sitename.com</a></b>
                         </li>
 
                     </ul><!--/ .our-contacts-->

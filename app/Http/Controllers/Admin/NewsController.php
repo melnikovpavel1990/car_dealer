@@ -94,7 +94,7 @@ class NewsController extends Controller
      */
     public function destroy(News $new, $id)
     {
-        
+
 //        News::find($id) -> destroy($id);
         $new = News::find($id);
         $new->delete();

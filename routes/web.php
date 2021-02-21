@@ -14,12 +14,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'SiteController@index')->name('Home');
-Route::get('/product', 'SiteController@product')->name('Product');
+//Route::get('/product/{id}', 'SiteController@product')->name('Product');
 Route::get('/news', 'SiteController@news')->name('news');
 Route::get('/new/{id}', 'SiteController@new')->name('new');
 Route::get('/autoads', 'SiteController@autoads')->name('AutoAds');
+
+Route::get('/one_car/{id}', 'SiteController@one_car')->name('one_car');
+
+
 Route::get('/contacts', 'SiteController@contacts')->name('Contacts');
-Route::get('/product/create', 'AddController@create')->name('PostAd');
+
+Route::get('/product/create', 'AddController@create')->name('PostAd_create');
+Route::post('/product/create', 'AddController@store')->name('PostAd_store');
+
 Route::post('/telegram', 'SiteController@telegram')->name('telegram');
 
 Route::get('/admins', 'Admin\\AdminController@index')->name('admin');
@@ -31,12 +38,7 @@ Route::put('/admins/news/{id}/update', 'Admin\\NewsController@update')->name('ad
 Route::delete('/admins/news/{id}/destroy', 'Admin\\NewsController@destroy')->name('admin_news_destroy');
 
 
-//$path = $request->file('image')->store('news');
-//$params = $requst -> all();
-//$params['image'] - $path;
-//News::create($request->except('_token'));
-//$authors = Author::get($params);
-//return redirect()->route('admin_news', compact('authors'));
+
 
 
 

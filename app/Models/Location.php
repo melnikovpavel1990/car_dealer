@@ -11,4 +11,8 @@ class Location extends Model
     public function cars(){
         return $this->belongsTo(Car::class);
     }
+
+    public function cityes(){
+        return $this->belongsTo(City::class);
+    }
 }

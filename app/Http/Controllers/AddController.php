@@ -2,7 +2,14 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Car;
+use App\Models\CarModel;
+use App\Models\City;
+use App\Models\Color;
+use App\Models\Fuel;
+use App\Models\Location;
+use App\Models\Transmission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PHPUnit\TextUI\XmlConfiguration\Group;
@@ -28,9 +35,15 @@ class AddController extends Controller
      */
     public function create()
     {
-        $cars = Car::get();
-        dd($cars);
-        return view('product.create', compact('cars'));
+        print_r('asd');
+        $marks = \App\Models\CarMark::all();
+        $models = \App\Models\CarModel::all();
+        $cities = \App\Models\City::with('location')->get();
+        $colors = \App\Models\Color::all();
+        $fuels = \App\Models\Fuel::all();
+        $locations = \App\Models\Location::all();
+        $transmissions = \App\Models\Transmission::all();
+        return view('product.create', compact('marks', 'models', 'cities', 'colors', 'fuels', 'locations', 'transmissions'));
 
     }
 
@@ -42,7 +55,12 @@ class AddController extends Controller
      */
     public function store(Request $request)
     {
-        //
+//        $path = $request->file('image')->store('public/news');
+//        $params = $request->all();
+//        $params['image'] = $path;
+
+        Car::create($request->except('_token', 'img'));
+        return redirect()->route('Home');
     }
 
     /**

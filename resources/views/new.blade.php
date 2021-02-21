@@ -8,6 +8,7 @@
         <h2 class="title">{{$news -> title}}</h2>
 
         <ul class="entry-meta">
+            <li><b>Author:</b> {{($news -> author -> name)}}</li>
             <li><b>Date:</b>{{substr($news -> updated_at, 0, 10)}}</li>
             {{--            @isset($new)--}}
             {{--                @if($new->author_id == $authors->id)--}}

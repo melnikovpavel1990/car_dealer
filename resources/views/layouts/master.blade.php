@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ asset("css/style.css") }}" media="screen" />
     <link rel="stylesheet" href="{{ asset("css/skeleton.css") }}" media="screen" />
     <link rel="stylesheet" href="{{ asset("sliders/flexslider/flexslider.css") }}" media="screen" />
-{{--    <link rel="stylesheet" href="{{ asset("fancybox/jquery.fancybox.css") }}" media="screen" />--}}
+    <link rel="stylesheet" href="{{ asset("fancybox/jquery.fancybox.css") }}" media="screen" />
 
 
     <!-- HTML5 Shiv + detect touch events -->
@@ -40,7 +40,7 @@
         </div>
         <!--/ .widget-container-->
 
-        <h1 class="widget-title" style="margin-top: 50px;">Car Dealer</h1>
+        <h1 class="widget-title" style="margin-top: 50px;"><span style="color: coral">Car</span> Dealer</h1>
         <nav id="navigation" class="navigation">
 
             <ul>
@@ -49,7 +49,7 @@
                 <li><a href="{{ route('news') }}">News</a></li>
                 <li><a href="{{ route('Contacts') }}">Contacts</a></li>
                 <li><a href="{{ route('admin') }}">Admin</a></li>
-                <li style="margin-left: 560px"><a href="{{ route('PostAd') }}">Post an ad</a></li>
+                <li style="margin-left: 560px"><a href="{{ route('PostAd_create') }}">Post an ad</a></li>
             </ul>
 
         </nav><!--/ #navigation-->
@@ -201,13 +201,12 @@
     </footer><!--/ #footer-->
 
     <!-- - - - - - - - - - - - - - - end Footer - - - - - - - - - - - - - - - - -->
-{{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>--}}
-{{--    <script>window.jQuery || document.write('<script src="js/jquery-1.7.2.min.js"><\/script>')</script>--}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.7.2.min.js"><\/script>')</script>
     <!--[if lt IE 9]>
     <script src="js/selectivizr-and-extra-selectors.min.js"></script>
     <![endif]-->
     <script src="sliders/flexslider/jquery.flexslider-min.js"></script>
-    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <script src="js/jquery.gmap.min.js"></script>
     <script src="js/jquery-impromptu.js"></script>
     <script src="js/custom.js"></script>

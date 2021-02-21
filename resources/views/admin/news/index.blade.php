@@ -36,18 +36,28 @@
                                     <td>{{$new -> author ->name}}</td>
                                     <td>{{mb_substr($new->content, 0, 50)}}...</td>
                                     <td>
-{{--                                        <form action="{{route('admin_news_destroy', $new)}}" method="post">--}}
                                         <a class="btn btn-info"
                                            href="{{route('admin_news_edit', ['id' => $new->id])}}">Редактировать
                                         </a>
-                                            <form action="{{route('admin_news_destroy', ['id' => $new->id])}}" method="post">
+                                        <form action="{{route('admin_news_destroy', ['id' => $new->id])}}"
+                                              method="post">
                                             @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-danger">Delete</button>
+                                            @method('DELETE')
+                                            <button class="btn btn-danger">Delete</button>
                                         </form>
                                     </td>
                                 </tr>
                             @endforeach
+                            <div class="row">
+                                <div class="col-sm-12 col-md-5">
+                                    <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">
+                                        Showing 1 to 10 of 57 entries
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-7">
+                                    {{$news->links()}}
+                                </div>
+                            </div>
                             </tbody>
                         </table>
                     </div>

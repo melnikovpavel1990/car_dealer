@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
+use App\Models\Car;
 use App\Models\CarChar;
 use App\Models\CarModel;
 use App\Models\Marka;
@@ -14,18 +15,21 @@ class SiteController extends Controller
 {
     public function index()
     {
-        $news = News::orderBy('id', 'DESC')->paginate(3);
-        return view('index', compact('news'));
+        $cars = Car::orderBy('id', 'DESC')->get();
+        $paid = Car::orderBy('id', 'DESC')->paginate(2);
+        $news = News::orderBy('id', 'DESC')->paginate(6);
+        return view('index', compact('news', 'cars', 'paid'));
     }
 
-    public function product()
+    public function one_car($id)
     {
-        return view('product');
+        $car = Car::findOrFail($id);
+        return view('product.onecar', compact('car'));
     }
 
     public function news()
     {
-        $news = News::get();
+        $news = News::orderBy('id', 'DESC')->get();
         return view('news', compact('news'));
     }
 
@@ -33,12 +37,13 @@ class SiteController extends Controller
     {
         $authors = Author::get();
         $news = News::findOrFail($id);
-        return view('new', compact('news', $authors));
+        return view('new', compact('news', 'authors'));
     }
 
     public function autoads()
     {
-        return view('autoads');
+        $cars = Car::all();
+        return view('autoads', compact('cars'));
     }
 
     public function contacts()
