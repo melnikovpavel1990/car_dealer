@@ -14,10 +14,10 @@
             <div id="slider" class="flexslider clearfix">
 
                 <ul class="slides">
-
+                    @foreach($paid as $car)
                     <li>
                         <img src="images/sliders/slide-1.jpg" alt=""/>
-                        @foreach($paid as $car)
+
                             <div class="caption">
                                 <div class="caption-entry">
 
@@ -29,13 +29,13 @@
                                         <dd><span class="heading">${{$car->price}}</span></dd>
                                     </dl><!--/ .auto-detailed-->
 
-                                    <a href="#" class="button orange"> Details</a>
+                                    <a href="{{route('one_car', ['id' => $car->id])}}" class="button orange"> Details</a>
 
                                 </div><!--/ .caption-entry-->
                             </div><!--/ .caption-->
-                        @endforeach
-                    </li>
 
+                    </li>
+                    @endforeach
                 </ul><!--/ .slides-->
 
             </div><!--/ #slider-->
@@ -72,14 +72,14 @@
                         @foreach($cars as $car)
                         <article>
 
-                                <a href="one-products.html" class="single-image picture video">
+                                <a href="{{route('one_car', ['id' => $car->id])}}" class="single-image picture video">
                                     <img src="images/temp/thumb-1.jpg" alt="">
                                 </a>
 
                                 <div class="detailed">
 
                                     <h6 class="title-item">
-                                        <a href="">{{$car->mark->mark}}  {{$car->model->model}}</a>
+                                        <a href="{{route('one_car', ['id' => $car->id])}}">{{$car->mark->mark}}  {{$car->model->model}}</a>
                                     </h6>
 
                                     <span class="price">${{$car->price}}</span>

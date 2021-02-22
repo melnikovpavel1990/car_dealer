@@ -16,7 +16,7 @@ class SiteController extends Controller
     public function index()
     {
         $cars = Car::orderBy('id', 'DESC')->get();
-        $paid = Car::orderBy('id', 'DESC')->paginate(2);
+        $paid = Car::orderBy('id', 'DESC')->paginate(5);
         $news = News::orderBy('id', 'DESC')->paginate(6);
         return view('index', compact('news', 'cars', 'paid'));
     }
