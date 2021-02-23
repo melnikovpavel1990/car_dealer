@@ -14,7 +14,7 @@
                     List News
                 </div>
                 <div class="card-header">
-                    <a href="{{route('admin_news_create')}}">Добавление категории</a>
+                    <a href="{{route('admin_news_create')}}">Добавление статьи</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -48,18 +48,15 @@
                                     </td>
                                 </tr>
                             @endforeach
-                            <div class="row">
-                                <div class="col-sm-12 col-md-5">
-                                    <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">
-                                        Showing 1 to 10 of 57 entries
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-7">
-                                    {{$news->links()}}
-                                </div>
-                            </div>
+
                             </tbody>
                         </table>
+                        <div class="row">
+
+                            <div class="col-sm-12 col-md-7">
+                                {{$news->links()}}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

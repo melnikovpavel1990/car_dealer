@@ -18,16 +18,16 @@ class CreateCarsTable extends Migration
             $table->unsignedBigInteger('mark_id');
             $table->unsignedBigInteger('model_id');
             $table->unsignedBigInteger('transmission_id');
-            $table->string('year');
+            $table->integer('year')->nullable();
             $table->unsignedBigInteger('color_id');
-            $table->string('power');
+            $table->integer('power')->nullable();
             $table->unsignedBigInteger('fuel_id');
             $table->unsignedBigInteger('location_id');
             $table->unsignedBigInteger('city_id');
-            $table->integer('price');
-            $table->integer('milleage');
-            $table->string('title', 255);
-            $table->string('description', 255);
+            $table->integer('price')->nullable();
+            $table->integer('milleage')->nullable();
+            $table->string('title', 255)->nullable();
+            $table->string('description', 255)->nullable();
             $table->boolean('Bluetooth')->default(false);
             $table->boolean('air_conditioning')->default(false);
             $table->boolean('GPS')->default(false);
@@ -53,9 +53,9 @@ class CreateCarsTable extends Migration
             $table->foreign('transmission_id')
                 ->references('id')
                 ->on('transmissions');
-//            $table->foreign('fuel_id')
-//                ->references('id')
-//                ->on('attr_values');
+            $table->foreign('fuel_id')
+                ->references('id')
+                ->on('attr_values');
             $table->foreign('color_id')
                 ->references('id')
                 ->on('colors');

@@ -33,11 +33,9 @@
 
             <div class="wp-pagenavi clearfix">
 
-                <span class="pages">Page 1 of 2</span>
-                <a class="prevpostslink" href="#"></a>
-                <span class="current">1</span>
-                <a class="page" href="#">2</a>
-                <a class="nextpostslink" href="#"></a>
+                <div class="col-sm-12 col-md-7">
+                    {{$news->links()}}
+                </div>
 
             </div><!--/ .wp-pagenavi-->
 

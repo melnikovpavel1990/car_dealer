@@ -16,7 +16,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::orderBy('id', 'DESC')->paginate(6);
+        $news = News::orderBy('id', 'DESC')->paginate(2);
         return view('admin.news.index', compact('news'));
     }
 
@@ -80,8 +80,11 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $path = $request->file('image')->store('public/news');
+        $params = $request->all();
+        $params['image'] = $path;
         $new = News::findOrFail($id);
-        $new->fill($request->all());
+        $new->fill($params,$request->all());
         $new->save();
         return redirect()->route('admin_news');
     }

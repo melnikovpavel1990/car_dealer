@@ -26,13 +26,13 @@
                     <article>
 
                         <a href="one-products.html" class="single-image picture video">
-                            <img src="images/temp/thumb-1.jpg" alt="">
+                            <img src="{{route('one_car', ['id' => $car->id])}}" alt="">
                         </a>
 
                         <div class="detailed">
 
                             <h6 class="title-item">
-                                <a href="one-products.html">{{$car->mark->mark}}  {{$car->model->model}}</a>
+                                <a href="{{route('one_car', ['id' => $car->id])}}">{{$car->mark->mark}}  {{$car->model->model}}</a>
                             </h6>
 
                                 <span class="price">${{$car->price}}</span>
@@ -47,7 +47,7 @@
                             </ul><!--/ .list-entry-->
 
 
-                            <a href="one-products.html" class="button orange">Details</a>
+                            <a href="{{route('one_car', ['id' => $car->id])}}" class="button orange">Details</a>
 
                         </div><!--/ .detailed-->
 
@@ -58,11 +58,8 @@
 
                 <div class="wp-pagenavi clearfix">
 
-                    <span class="pages">Page 1 of 2</span>
-                    <a class="prevpostslink" href="#"></a>
-                    <span class="current">1</span>
-                    <a class="page" href="#">2</a>
-                    <a class="nextpostslink" href="#"></a>
+                                        {{$cars->links()}}
+
 
                 </div><!--/ .wp-pagenavi-->
 

@@ -4,10 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Author;
 use App\Models\Car;
-use App\Models\CarChar;
-use App\Models\CarModel;
-use App\Models\Marka;
-use App\Models\Model;
 use App\Models\News;
 use Illuminate\Http\Request;
 
@@ -17,7 +13,7 @@ class SiteController extends Controller
     {
         $cars = Car::orderBy('id', 'DESC')->get();
         $paid = Car::orderBy('id', 'DESC')->paginate(5);
-        $news = News::orderBy('id', 'DESC')->paginate(6);
+        $news = News::orderBy('id', 'DESC')->paginate(3);
         return view('index', compact('news', 'cars', 'paid'));
     }
 
@@ -29,33 +25,36 @@ class SiteController extends Controller
 
     public function news()
     {
-        $news = News::orderBy('id', 'DESC')->get();
-        return view('news', compact('news'));
+        $news = News::orderBy('id', 'DESC')->paginate(3);
+        return view('pages.news', compact('news'));
     }
 
     public function new($id)
     {
         $authors = Author::get();
         $news = News::findOrFail($id);
-        return view('new', compact('news', 'authors'));
+        return view('pages.new', compact('news', 'authors'));
     }
 
     public function autoads()
     {
-        $cars = Car::all();
-        return view('autoads', compact('cars'));
+        $cars = Car::orderBy('id', 'DESC')->paginate(5);
+        return view('pages.autoads', compact('cars'));
     }
 
     public function contacts()
     {
-        return view('contacts');
+        return view('pages.contacts');
     }
 
     public function telegram()
     {
+//        if ((isset($_POST['name']) && $_POST['name'] != "") && (isset($_POST['email']) && $_POST['email'] != ""
+//                && (isset($_POST['message']) && $_POST['message'] != ""))){
         $name = $_POST['name'];
         $email = $_POST['email'];
         $message = $_POST['message'];
+
         $token = "1519109465:AAE6t6qCvbDUa_xblwmaB2i8RzvjA-kQO0w";
         $chat_id = "730048692";
         $arr = array(
@@ -64,6 +63,6 @@ class SiteController extends Controller
             'message' => $message
         );
         $txt = null;
-        return view('telegram', compact('token', 'message', 'chat_id', 'arr', 'txt'));
+        return view('pages.telegram', compact('token', 'message', 'chat_id', 'arr', 'txt'));
     }
 }

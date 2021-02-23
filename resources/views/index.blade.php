@@ -45,8 +45,6 @@
 
             <!-- - - - - - - - - - - Search Panel - - - - - - - - - - - - - -->
 
-        @include('include.search')
-
 
 
 
@@ -103,7 +101,7 @@
                         @endforeach
 
                     </section><!--/ .item-grid-->
-                    <a href="#" class="see">See all automobiles</a>
+                    <a href="{{route('AutoAds')}}" class="see">See all automobiles</a>
                 </section><!--/ #content-->
 
                 <!-- - - - - - - - - - - - - - end Content - - - - - - - - - - - - - - - - -->

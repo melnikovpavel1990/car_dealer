@@ -9,6 +9,6 @@ class CarMark extends Model
     protected $fillable = ['mark'];
 
     public function cars(){
-        return $this->belongsTo(Car::class);
+        return $this->hasMany(Car::class);
     }
 }

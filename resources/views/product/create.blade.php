@@ -7,7 +7,7 @@
         <!-- - - - - - - - - - - - - - - Container - - - - - - - - - - - - - - - - -->
 
         <section class="container content clearfix">
-            <form action="{{route('PostAd_store')}}" enctype="multipart/form-data" method="POST">
+            <form action="{{route('PostAd_store')}}" enctype="multipart/form-data" method="POST" id="form">
                 @csrf
                 <div class="form-account">
 
@@ -42,9 +42,6 @@
                                         </select>
                                     </p>
 
-                                    <label>Milleage:</label>
-                                    <input name="milleage" type="text">
-                                    </p>
                                     <p>
                                         <label>Fuel type:</label>
                                         <select name="fuel_id">
@@ -53,6 +50,10 @@
                                             @endforeach
                                         </select>
                                     </p>
+                                    <label>Milleage:</label>
+                                    <input name="milleage" type="text">
+                                    </p>
+
 
 
                                 </div><!--/ .five-->
@@ -67,26 +68,31 @@
                                             @endforeach
                                         </select>
                                     </p>
-                                    <p class="three columns alpha">
-                                        <label>Price:</label>
-                                        <input name="price" type="text">
-                                    </p>
 
-                                    <p class="three columns omega">
+
+                                    <p class="three columns omega" style="margin-left: 0">
                                         <label>Year:</label>
-                                        <input name="year" type="text">
+                                        <select name="year" id="year">
+                                        @for($i=1980; $i<=2021; $i++)
+                                            <option value="{{$i}}">{{$i}}</option>
+                                        @endfor
+                                        </select>
                                     </p>
 
-                                    <p>
-                                        <label>Ecterrior color:</label>
+                                    <p class="three columns alpha" style="margin-left: 30px">
+                                        <label>Select color:</label>
                                         <select name="color_id">
+                                            <option value=""></option>
                                             @foreach($colors as $color)
                                                 <option value="{{ $color->id }}">{{$color->color}}</option>
                                             @endforeach
                                         </select>
 
                                     </p>
-
+                                    <p class="three columns alpha">
+                                        <label>Price:</label>
+                                        <input name="price" type="text">
+                                    </p>
 
                                 </div><!--/ .five-->
 
@@ -101,17 +107,15 @@
                                         </select>
                                     </p>
 
-                                    <p class="three columns alpha">
-                                        <label>Power</label>
-                                        <input name="" type="text">
-                                    </p>
-
-                                    <p class="three columns omega">
+                                    <p class="three columns omega" style="margin-left: 0">
                                         <label>Engine size:</label>
-                                        <input name="power" type="text">
+                                        <select name="power" id="power">
+                                        @for($i=0.4; $i<=6; $i+=0.1)
+                                            <option value="{{$i}}">{{$i}}</option>
+                                        @endfor
+                                        </select>
                                     </p>
-
-
+                                    <br> <br> <br> <br>
                                     <p class="three columns alpha">
                                         <label>Location:</label>
                                         <select name="location_id">
@@ -168,8 +172,7 @@
                                     <div class="form-title"><h6>Car Accessories</h6></div>
 
                                     <div class="four columns alpha">
-                                        {{--                                        <input class="form-control py-4" type="checkbox" value="1" name="is_active"--}}
-                                        {{--                                            {{$category->is_active?'checked':''}}/>--}}
+
                                         <p>
                                             <label class="input-check"><input type="checkbox" value="1"
                                                                               name="air_conditioning"/>Air
@@ -198,7 +201,8 @@
                                         </p>
                                         <p>
                                             <label class="input-check"><input type="checkbox" value="1"
-                                                                              name="speed_control"/>Speed Control:</label>
+                                                                              name="speed_control"/>Speed
+                                                Control:</label>
                                         </p>
 
                                     </div><!--/ .four-->
@@ -247,11 +251,11 @@
                                 <div class="form-title"><h6>Upload Photos</h6></div>
 
                                 <div class="upload-holder">
-
+                                    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
                                     Select image to upload:
-                                    <input type="file" value="Upload Image" name="submit">
-
+                                    <input type="file" name="img[]" id="id_image" multiple="multiple"
+                                           value="Upload Image" accept="image/jpg, image/jpeg">
 
                                 </div><!--/ .upload-holder-->
 
@@ -262,6 +266,32 @@
                         <div class="form-group">
                             <button class="btn btn-danger" type="submit">Save</button>
                         </div>
+                        <script type='text/javascript'>
+                            $(function() {
+                                var // Define maximum number of files.
+                                    max_file_number = 2,
+                                    // Define your form id or class or just tag.
+                                    $form = $('form'),
+                                    // Define your upload field class or id or tag.
+                                    $file_upload = $('#id_image', $form),
+                                    // Define your submit class or id or tag.
+                                    $button = $('.submit', $form);
+                                // Disable submit button on page ready.
+                                $button.prop('disabled', 'disabled');
+                                $file_upload.on('change', function () {
+                                    var number_of_images = $(this)[0].files.length;
+                                    if (number_of_images > max_file_number) {
+                                        alert('You can upload maximum 2 files.');
+                                        $(this).val('');
+                                        $button.prop('disabled', 'disabled');
+                                    } else {
+                                        $button.prop('disabled', false);
+                                    }
+                                });
+                            });
+                         </script>
+
+                        </script>
                     </div><!--/ .cart-holder-->
 
                 </div><!--/ .form-entry-->

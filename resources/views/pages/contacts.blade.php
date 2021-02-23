@@ -42,8 +42,9 @@
 
                     <h3 class="widget-title">Contact Us</h3>
 
-                    <form METHOD="post" action="{{route('telegram')}}" class="contact-form" id="contactform">
+                    <form METHOD="post" action="{{route('telegram')}}" name="ajax_form" id="ajax_form" class="contact-form" id="contactform">
                         @csrf
+{{--                        @method('POST')--}}
                         <p class="input-block">
                             <label for="name">Your Name </label>
                             <input type="text" name="name" id="name" />
@@ -65,6 +66,11 @@
                         </p>
 
                     </form><!--/ .contact-form-->
+
+                    <br>
+
+                    <div id="result_form"></div>
+
 
                 </div><!--/ #contact-->
 

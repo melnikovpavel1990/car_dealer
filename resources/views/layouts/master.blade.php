@@ -11,6 +11,8 @@
 
     <meta name="description" content="">
     <meta name="author" content="">
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <link href="{{ asset('admin/css/styles.css') }}" rel="stylesheet" />
 
     <link rel="shortcut" href="{{ asset("images/favicon.html") }}" />
     <link rel="stylesheet" href="{{ asset("css/style.css") }}" media="screen" />

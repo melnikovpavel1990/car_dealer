@@ -9,7 +9,7 @@
     <div class="entry-loan">
 
         <form action="#" method="POST" name="myform" id="loan">
-
+@csrf
             <table>
                 <tr>
                     <td><label for="LoanAmount">Car Loan Amount</label></td>

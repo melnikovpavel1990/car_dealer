@@ -33,9 +33,8 @@ class AddController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        print_r('asd');
         $marks = \App\Models\CarMark::all();
         $models = \App\Models\CarModel::all();
         $cities = \App\Models\City::with('location')->get();
@@ -94,7 +93,13 @@ class AddController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+//        $path = $request->file('image')->store('public/news');
+//        $params = $request->all();
+//        $params['image'] = $path;
+//        $new = News::findOrFail($id);
+//        $new->fill($params,$request->all());
+//        $new->save();
+//        return redirect()->route('admin_news');
     }
 
     /**
