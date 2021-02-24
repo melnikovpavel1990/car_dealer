@@ -13,7 +13,6 @@
     <meta name="author" content="">
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <link href="{{ asset('admin/css/styles.css') }}" rel="stylesheet" />
-
     <link rel="shortcut" href="{{ asset("images/favicon.html") }}" />
     <link rel="stylesheet" href="{{ asset("css/style.css") }}" media="screen" />
     <link rel="stylesheet" href="{{ asset("css/skeleton.css") }}" media="screen" />
@@ -22,6 +21,7 @@
 
 
     <!-- HTML5 Shiv + detect touch events -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <script type="text/javascript" src="{{ asset("js/modernizr.custom.js") }}"></script>
 </head>
 <body class="menu-1 h-style-1 text-1">
@@ -38,6 +38,37 @@
 
             <span class="adds">12 Street, Los Angeles, CA, 94101</span>
 
+            <span><ul class="navbar-nav ml-auto">
+                <!-- Authentication Links -->
+                @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    </li>
+                    @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                    @endif
+                @else
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }}
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               >
+                                {{ __('Logout') }}
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                @endguest
+            </ul></span>
+
+
 
         </div>
         <!--/ .widget-container-->
@@ -50,8 +81,12 @@
                 <li><a href="{{ route('AutoAds') }}">Auto ads</a></li>
                 <li><a href="{{ route('news') }}">News</a></li>
                 <li><a href="{{ route('Contacts') }}">Contacts</a></li>
+                @if (Auth::user())
                 <li><a href="{{ route('admin') }}">Admin</a></li>
+                @endif
+                @if (Auth::user())
                 <li style="margin-left: 560px"><a href="{{ route('PostAd_create') }}">Post an ad</a></li>
+                @endif
             </ul>
 
         </nav><!--/ #navigation-->
@@ -60,38 +95,14 @@
 
     <!-- - - - - - - - - - - - - - end Header - - - - - - - - - - - - - - - - -->
     <div class="wrap">
-    @yield('content')
+
+
+        @yield('content')
     </div><!--/ .wrap-->
 
-    <div class="account-wrapper">
-
-        <form class="form-reg" method="post" action="#">
-
-            <a href="#" class="log">Login</a>
-
-            <p>
-                <label>Username*</label>
-                <input class="input-medium" type="text" />
-            </p>
-
-            <p>
-                <label>Password*</label>
-                <input class="input-medium" type="password" />
-            </p>
-
-            <p class="forgot-pass">
-                <a href="#">Forgot your password?</a>
-            </p>
-
-            <p>
-                <a href="/login" class="button dark enter-btn">Login</a>
-                <a href="/register" class="button dark enter-btn">Registrate</a>
-            </p>
+    ><!--/ .account-wrapper-->
 
 
-        </form><!--/ .form-reg-->
-
-    </div><!--/ .account-wrapper-->
 
     <!-- - - - - - - - - - - - - - - Footer - - - - - - - - - - - - - - - - -->
 
@@ -184,11 +195,7 @@
 
             </div><!--/ .four .columns-->
 
-            <div class="four columns">
-
-                <div id="gMap"></div>
-
-            </div><!--/ .four .columns-->
+<!--/ .four .columns-->
 
             <div class="adjective clearfix">
 
@@ -203,15 +210,16 @@
     </footer><!--/ #footer-->
 
     <!-- - - - - - - - - - - - - - - end Footer - - - - - - - - - - - - - - - - -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/jquery-1.7.2.min.js"><\/script>')</script>
-    <!--[if lt IE 9]>
-    <script src="js/selectivizr-and-extra-selectors.min.js"></script>
-    <![endif]-->
-    <script src="sliders/flexslider/jquery.flexslider-min.js"></script>
-    <script src="js/jquery.gmap.min.js"></script>
-    <script src="js/jquery-impromptu.js"></script>
-    <script src="js/custom.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/jquery-1.7.2.min.js"><\/script>')</script>
+        <!--[if lt IE 9]>
+        <script src="js/selectivizr-and-extra-selectors.min.js"></script>
+        <![endif]-->
+        <script src="sliders/flexslider/jquery.flexslider-min.js"></script>
+        <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+        <script src="js/jquery.gmap.min.js"></script>
+        <script src="js/jquery-impromptu.js"></script>
+        <script src="js/custom.js"></script>
 
 
 </body>

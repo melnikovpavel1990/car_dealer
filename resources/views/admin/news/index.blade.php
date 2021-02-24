@@ -14,7 +14,7 @@
                     List News
                 </div>
                 <div class="card-header">
-                    <a href="{{route('admin_news_create')}}">Добавление статьи</a>
+                    <a href="{{route('admin.news.create')}}">Добавление статьи</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -37,9 +37,9 @@
                                     <td>{{mb_substr($new->content, 0, 50)}}...</td>
                                     <td>
                                         <a class="btn btn-info"
-                                           href="{{route('admin_news_edit', ['id' => $new->id])}}">Редактировать
+                                           href="{{route('admin.news.edit', ['id' => $new->id])}}">Редактировать
                                         </a>
-                                        <form action="{{route('admin_news_destroy', ['id' => $new->id])}}"
+                                        <form action="{{route('admin.news.destroy', ['id' => $new->id])}}"
                                               method="post">
                                             @csrf
                                             @method('DELETE')

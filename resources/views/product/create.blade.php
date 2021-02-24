@@ -9,6 +9,8 @@
         <section class="container content clearfix">
             <form action="{{route('PostAd_store')}}" enctype="multipart/form-data" method="POST" id="form">
                 @csrf
+
+                <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                 <div class="form-account">
 
                     <div class="form-heading">
@@ -32,6 +34,7 @@
                             <div class="cart-content step-1 clearfix">
 
                                 <div class="five columns alpha">
+
                                     <p>
                                         <label>Mark:</label>
                                         <select name="mark_id">
@@ -77,9 +80,10 @@
                                             <option value="{{$i}}">{{$i}}</option>
                                         @endfor
                                         </select>
+
                                     </p>
 
-                                    <p class="three columns alpha" style="margin-left: 30px">
+                                    <p class="three columns alpha" >
                                         <label>Select color:</label>
                                         <select name="color_id">
                                             <option value=""></option>

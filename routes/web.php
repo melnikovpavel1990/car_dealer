@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/', 'SiteController@index')->name('Home');
+
 Route::get('/', 'SiteController@index')->name('Home');
 //Route::get('/product/{id}', 'SiteController@product')->name('Product');
 Route::get('/news', 'SiteController@news')->name('news');
@@ -29,14 +31,19 @@ Route::post('/product/create', 'AddController@store')->name('PostAd_store');
 
 Route::post('/telegram', 'SiteController@telegram')->name('telegram');
 
+//Route::prefix('admins')->namespace('Admin')//->middleware(['role:admin'])
+//    ->group(function () {
+//        Route::get('/', 'AdminController@index')->name('admin');
+//        Route::resource('/news/', 'NewsController')->names('admin.news');
+//    });
+
 Route::get('/admins', 'Admin\\AdminController@index')->name('admin');
 Route::get('/admins/news', 'Admin\\NewsController@index')->name('admin_news');
-Route::get('/admins/news/create', 'Admin\\NewsController@create')->name('admin_news_create');
-Route::post('/admins/news/create', 'Admin\\NewsController@store')->name('admin_news_store');
-Route::get('/admins/news/{id}/edit', 'Admin\\NewsController@edit')->name('admin_news_edit');
-Route::put('/admins/news/{id}/update', 'Admin\\NewsController@update')->name('admin_news_update');
-Route::delete('/admins/news/{id}/destroy', 'Admin\\NewsController@destroy')->name('admin_news_destroy');
-
+Route::get('/admins/news/create', 'Admin\\NewsController@create')->name('admin.news.create');
+Route::post('/admins/news/create', 'Admin\\NewsController@store')->name('admin.news.store');
+Route::get('/admins/news/{id}/edit', 'Admin\\NewsController@edit')->name('admin.news.edit');
+Route::put('/admins/news/{id}/update', 'Admin\\NewsController@update')->name('admin.news.update');
+Route::delete('/admins/news/{id}/destroy', 'Admin\\NewsController@destroy')->name('admin.news.destroy');
 
 
 
@@ -51,6 +58,7 @@ Route::delete('/admins/news/{id}/destroy', 'Admin\\NewsController@destroy')->nam
 //        Route::resource('/news', 'NewsController')->names('admin.news');
 //        Route::resource('/company', 'CompanyController')->names('admin.company');
 //    });
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Auth::routes();
 

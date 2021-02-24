@@ -57,7 +57,6 @@ class AddController extends Controller
 //        $path = $request->file('image')->store('public/news');
 //        $params = $request->all();
 //        $params['image'] = $path;
-
         Car::create($request->except('_token', 'img'));
         return redirect()->route('Home');
     }

@@ -4,7 +4,7 @@
     <main>
         <div class="container-fluid">
             <div style="margin: 50px">
-                <form action="{{route('admin_news_update', ['id' => $new -> id])}}" enctype="multipart/form-data"
+                <form action="{{route('admin.news.update', ['id' => $new -> id])}}" enctype="multipart/form-data"
                       method="POST">
                     @csrf
                     @method('put')

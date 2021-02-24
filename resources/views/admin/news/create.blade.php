@@ -4,7 +4,7 @@
     <main>
         <div class="container-fluid">
             <div style="margin: 50px">
-                <form action="{{route('admin_news_store')}}" enctype="multipart/form-data" method="POST">
+                <form action="{{route('admin.news.store')}}" enctype="multipart/form-data" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Title</label>
