@@ -59,6 +59,7 @@
                             <li><b>Engine Size: </b><span>{{$car->power}}</span></li>
                             <li><b>Trans: </b><span>{{$car->transmission->name}}</span></li>
                             <li><b>Fuel Type: </b><span>{{$car->fuel->name}}</span></li>
+                            <li><b>Phone number: </b><span>+375(29)1234567</span></li>
                         </ul>
                         <h3 class="section-title">Description</h3>
 

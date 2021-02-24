@@ -23,6 +23,9 @@ Route::get('/autoads', 'SiteController@autoads')->name('AutoAds');
 Route::match(['get', 'post'], '/autoads/search', 'SearchController@index')->name('search');
 Route::get('/one_car/{id}', 'SiteController@one_car')->name('one_car');
 
+Route::get('/userAd', 'SiteController@userAd')->name('userAd');
+
+
 
 Route::match(['get', 'post'], '/contacts', 'SiteController@contacts')->name('Contacts');
 

@@ -17,7 +17,10 @@ class Car extends Model
     {
         return $this->belongsTo(CarMark::class);
     }
-
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     public function model()
     {
         return $this->belongsTo(CarModel::class);

@@ -60,6 +60,10 @@
                                >
                                 {{ __('Logout') }}
                             </a>
+                            <a class="dropdown-item" href="{{ route('userAd') }}"
+                            >
+                                {{ __('all ads') }}
+                            </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>

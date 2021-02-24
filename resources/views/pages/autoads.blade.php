@@ -25,8 +25,8 @@
                     @foreach($cars as $car)
                     <article>
 
-                        <a href="one-products.html" class="single-image picture video">
-                            <img src="{{route('one_car', ['id' => $car->id])}}" alt="">
+                        <a href="{{route('one_car', ['id' => $car->id])}}">
+                            <img src="images/temp/thumb-1.jpg"  alt="" style="max-width: 230px">
                         </a>
 
                         <div class="detailed">
@@ -36,6 +36,7 @@
                             </h6>
 
                                 <span class="price">${{$car->price}}</span>
+                            <a href="{{route('one_car', ['id' => $car->id])}}" class="button orange">Details</a>
 
                             <div class="clear"></div>
 
@@ -47,7 +48,7 @@
                             </ul><!--/ .list-entry-->
 
 
-                            <a href="{{route('one_car', ['id' => $car->id])}}" class="button orange">Details</a>
+
 
                         </div><!--/ .detailed-->
 

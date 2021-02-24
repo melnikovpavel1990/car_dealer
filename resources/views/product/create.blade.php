@@ -242,7 +242,7 @@
                                                                               value="1"/> Heated mirrors:</label>
                                         </p>
                                         <p>
-                                            <label class="input-check"><input name="tow_packag" type="checkbox"
+                                            <label class="input-check"><input name="tow_package" type="checkbox"
                                                                               value="1"/> Tow package:</label>
                                         </p>
 

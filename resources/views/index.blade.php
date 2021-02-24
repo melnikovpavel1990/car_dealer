@@ -15,8 +15,8 @@
 
                 <ul class="slides">
                     @foreach($paid as $car)
-                    <li>
-                        <img src="images/sliders/slide-1.jpg" alt=""/>
+                        <li>
+                            <img src="images/sliders/slide-1.jpg" alt=""/>
 
                             <div class="caption">
                                 <div class="caption-entry">
@@ -29,12 +29,13 @@
                                         <dd><span class="heading">${{$car->price}}</span></dd>
                                     </dl><!--/ .auto-detailed-->
 
-                                    <a href="{{route('one_car', ['id' => $car->id])}}" class="button orange"> Details</a>
+                                    <a href="{{route('one_car', ['id' => $car->id])}}" class="button orange">
+                                        Details</a>
 
                                 </div><!--/ .caption-entry-->
                             </div><!--/ .caption-->
 
-                    </li>
+                        </li>
                     @endforeach
                 </ul><!--/ .slides-->
 
@@ -46,9 +47,7 @@
             <!-- - - - - - - - - - - Search Panel - - - - - - - - - - - - - -->
 
 
-
-
-        <!-- - - - - - - - - - end Search Panel - - - - - - - - - - - - -->
+            <!-- - - - - - - - - - end Search Panel - - - - - - - - - - - - -->
 
         </div><!--/ .top-panel-->
 
@@ -68,9 +67,9 @@
 
                     <section id="change-items" class="item-grid">
                         @foreach($cars as $car)
-                        <article>
+                            <article>
 
-                                <a href="{{route('one_car', ['id' => $car->id])}}" class="single-image picture video">
+                                <a href="{{route('one_car', ['id' => $car->id])}}">
                                     <img src="images/temp/thumb-1.jpg" alt="">
                                 </a>
 
@@ -97,7 +96,7 @@
 
                                 </div><!--/ .detailed-->
 
-                        </article>
+                            </article>
                         @endforeach
 
                     </section><!--/ .item-grid-->

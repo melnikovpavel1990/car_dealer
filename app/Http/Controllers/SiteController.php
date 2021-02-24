@@ -65,4 +65,11 @@ class SiteController extends Controller
         $txt = null;
         return view('pages.telegram', compact('token', 'message', 'chat_id', 'arr', 'txt'));
     }
+    public function userAd()
+    {
+
+        $cars = Car::orderBy('id', 'DESC')->where('user_id', '=', \Auth::user()->id )->paginate(10);
+
+        return view('pages.autoads', compact('cars'));
+    }
 }
