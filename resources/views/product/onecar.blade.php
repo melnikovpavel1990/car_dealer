@@ -13,7 +13,17 @@
             <section id="content" class="two-thirds column">
 
                 <article class="item clearfix">
-
+                    @if(Auth::user()->id == $car->user_id)
+                        <a class="btn btn-info"
+                           href="{{route('PostAd.edit', ['id' => $car->id])}}">Редактировать
+                        </a>
+                        <form action="{{route('PostAd.destroy', ['id' => $car->id])}}"
+                              method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    @endif
                     <h2 class="title">{{$car->mark->mark}}  {{$car->model->model}}</h2>
 
                     <div id="gallery" class="gallery">

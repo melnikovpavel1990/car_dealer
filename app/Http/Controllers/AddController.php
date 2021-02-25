@@ -80,7 +80,16 @@ class AddController extends Controller
      */
     public function edit($id)
     {
-        //
+        $car = Car::findOrFail($id);
+        $marks = \App\Models\CarMark::all();
+        $models = \App\Models\CarModel::all();
+        $cities = \App\Models\City::all();
+        $colors = \App\Models\Color::all();
+        $fuels = \App\Models\Fuel::all();
+        $locations = \App\Models\Location::all();
+        $transmissions = \App\Models\Transmission::all();
+        return view('product.edit', compact('car','marks', 'models', 'cities', 'colors', 'fuels', 'locations', 'transmissions'));
+
     }
 
     /**
@@ -92,10 +101,14 @@ class AddController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $car = Car::findOrFail($id);
+        $car->fill($request->all());
+        $car->save();
+        return redirect()->route('userAd');
 //        $path = $request->file('image')->store('public/news');
 //        $params = $request->all();
 //        $params['image'] = $path;
-//        $new = News::findOrFail($id);
+//        $car = Car::findOrFail($id);
 //        $new->fill($params,$request->all());
 //        $new->save();
 //        return redirect()->route('admin_news');
@@ -109,6 +122,8 @@ class AddController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $car = Car::find($id);
+        $car->delete();
+        return redirect()->route('userAd');
     }
 }

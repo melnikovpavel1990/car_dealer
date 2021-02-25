@@ -7,7 +7,7 @@
         <!-- - - - - - - - - - - - - - - Container - - - - - - - - - - - - - - - - -->
 
         <section class="container content clearfix">
-            <form action="{{route('PostAd_store')}}" enctype="multipart/form-data" method="POST" id="form">
+            <form action="{{route('PostAd.store')}}" enctype="multipart/form-data" method="POST" id="form">
                 @csrf
 
                 <input type="hidden" name="user_id" value="{{Auth::user()->id}}">

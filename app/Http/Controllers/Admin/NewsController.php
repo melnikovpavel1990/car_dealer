@@ -40,7 +40,6 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
         $path = $request->file('image')->store('public/news');
         $params = $request->all();
         $params['image'] = $path;
