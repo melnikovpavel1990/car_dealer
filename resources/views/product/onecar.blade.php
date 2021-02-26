@@ -159,9 +159,9 @@
                                     Heated mirrors:</label>
                             </p>
                             <p>
-                                <label class="input-check"><input name="tow_packag" onclick="return false"
+                                <label class="input-check"><input name="tow_package" onclick="return false"
                                                                   type="checkbox"
-                                                                  value="1" {{$car->tow_packag?'checked':''}}/> Tow
+                                                                  value="1" {{$car->tow_package?'checked':''}}/> Tow
                                     package:</label>
                             </p>
 

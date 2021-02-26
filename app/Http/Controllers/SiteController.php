@@ -19,6 +19,7 @@ class SiteController extends Controller
 
     public function one_car($id)
     {
+
         $car = Car::findOrFail($id);
         return view('product.onecar', compact('car'));
     }

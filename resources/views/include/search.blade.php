@@ -16,7 +16,7 @@
                 <select name="mark">
                     <option selected=""></option>
                     @foreach($cars as $car)
-                        <option >{{$car->mark->mark}}</option>
+                        <option value="{{$car->mark_id}}">{{$car->mark->mark}}</option>
                     @endforeach
                 </select>
             </fieldset>
@@ -26,7 +26,7 @@
                 <select name="model">
                     <option selected=""></option>
                     @foreach($cars as $car)
-                        <option >{{$car->model->model}}</option>
+                        <option value="{{$car->model_id}}">{{$car->model->model}}</option>
                     @endforeach
                 </select>
             </fieldset>

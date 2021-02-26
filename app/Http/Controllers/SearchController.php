@@ -12,8 +12,13 @@ class SearchController extends Controller
 {
     public function index(Request $request)
     {
-        //dd($request->all());
         $query = Car::query();
+        if ($request->filled('mark')) {
+            $query->where('mark_id', '=', $request->mark);
+        }
+        if ($request->filled('model')) {
+            $query->where('model_id', '=', $request->model);
+        }
         if ($request->filled('price_min')) {
             $query->where('price', '>=', $request->price_min);
         }
@@ -27,14 +32,13 @@ class SearchController extends Controller
             $query->where('year', '<=', $request->year_to);
         }
         foreach (['air_conditioning', 'Bluetooth', 'GPS', 'heated_seats', 'power_seat', 'speed_control', 'ABS', 'airbag', 'alarm',
-                     'fog_lights', 'heated_mirrors', 'tow_packag'] as $value){
+                     'fog_lights', 'heated_mirrors', 'tow_package'] as $value) {
             if ($request->has($value)) {
                 $query->where($value, 1);
             }
         }
 
-
-            $cars = $query->paginate(22)->withPath($request->getQueryString());
+        $cars = $query->paginate(22)->withPath($request->getQueryString());
 
 
         return view('pages.autoads', compact('cars'));

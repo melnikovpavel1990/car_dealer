@@ -131,21 +131,32 @@
 
                                     <p class="three columns omega">
                                         <label>City:</label>
-                                        <select name="city_id">
-                                            <option selected="selected">Select city</option>
-                                            @foreach($cities as $city)
-                                                @isset($location->id )
-                                                    <option value="{{ $city->id }}"
-                                                    @if($city -> locations_id == $location->id)  @endif>
-                                                        {{$city->city}}  </option>
-                                                @endisset
-                                            @endforeach
-                                            {{--                                            @foreach($cities as $city)--}}
-                                            {{--                                                @if($location->id == $city -> locations_id) selected @endif>--}}
-                                            {{--                                                <option value="{{ $city->id }}">{{$city->city}}</option>--}}
-                                            {{--                                            @endforeach--}}
-                                        </select>
+                                        <select name="city_id"></select>
+
+{{--                                            @foreach($cities as $city)--}}
+{{--                                                @isset($location->id )--}}
+{{--                                                    <option value="{{ $city->id }}"--}}
+{{--                                                    @if($city -> locations_id == $location->id)  @endif>--}}
+{{--                                                        {{$city->city}}  </option>--}}
+{{--                                                @endisset--}}
+{{--                                            @endforeach--}}
+
+
                                     </p>
+
+                                    <script>
+                                        $(function () {
+                                            $(".league").change(function (){
+                                                var id
+                                            })
+                                        });
+                                    </script>
+
+
+
+
+
+
 
                                 </div><!--/ .five-->
 

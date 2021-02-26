@@ -37,12 +37,16 @@ class AddController extends Controller
     {
         $marks = \App\Models\CarMark::all();
         $models = \App\Models\CarModel::all();
-        $cities = \App\Models\City::with('location')->get();
+        $transmissions = \App\Models\Transmission::all();
         $colors = \App\Models\Color::all();
         $fuels = \App\Models\Fuel::all();
         $locations = \App\Models\Location::all();
-        $transmissions = \App\Models\Transmission::all();
-        return view('product.create', compact('marks', 'models', 'cities', 'colors', 'fuels', 'locations', 'transmissions'));
+        if ($request->has('location_id')) {
+            $parentId = $request->get('location_id');
+            $data = City::where('location_id', $parentId)->get();
+            return ['success' => true, 'data' => $data];
+        }
+        return view('product.create', compact('marks', 'models', 'colors', 'fuels', 'locations', 'transmissions'));
 
     }
 
@@ -103,6 +107,15 @@ class AddController extends Controller
     {
         $car = Car::findOrFail($id);
         $car->fill($request->all());
+
+        foreach (['air_conditioning', 'Bluetooth', 'GPS', 'heated_seats', 'power_seat', 'speed_control', 'ABS', 'airbag', 'alarm',
+                     'fog_lights', 'heated_mirrors', 'tow_package'] as $value){
+            if ($request->input($value) == 1) {
+                $car->$value = $request->input('$value', 1);
+            }else{
+                $car->$value = $request->input('$value', 0);
+            }
+        }
         $car->save();
         return redirect()->route('userAd');
 //        $path = $request->file('image')->store('public/news');

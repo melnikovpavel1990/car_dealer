@@ -89,7 +89,7 @@
                 <li><a href="{{ route('admin') }}">Admin</a></li>
                 @endif
                 @if (Auth::user())
-                <li style="margin-right: 0"><a href="{{ route('PostAd.create') }}">Post an ad</a></li>
+                <li><a href="{{ route('PostAd.create') }}">Post an ad</a></li>
                 @endif
             </ul>
 
