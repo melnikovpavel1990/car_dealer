@@ -131,8 +131,13 @@
 
                                     <p class="three columns omega">
                                         <label>City:</label>
-                                        <select name="city_id"></select>
+                                        <select name="city_id">
+                                        @foreach($cities as $city)
 
+                                                <option value="{{ $city->id }}">  {{$city->city}}  </option>
+
+                                        @endforeach
+                                        </select>
 {{--                                            @foreach($cities as $city)--}}
 {{--                                                @isset($location->id )--}}
 {{--                                                    <option value="{{ $city->id }}"--}}
@@ -269,7 +274,7 @@
                                     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
                                     Select image to upload:
-                                    <input type="file" name="img[]" id="id_image" multiple="multiple"
+                                    <input type="file" name="img[]" id="id_image" multiple="multiple" enctype="multipart/form-data"
                                            value="Upload Image" accept="image/jpg, image/jpeg">
 
                                 </div><!--/ .upload-holder-->

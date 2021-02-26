@@ -39,16 +39,16 @@
                             <ul class="thumbs list-image clearfix" style="display: inline;">
 
                                 <li>
-                                    <a class="thumb" name="leaf" href="{{asset('images/temp/item-1.jpg')}}"
+                                    <a class="thumb" name="leaf" href=""
                                        title="Title 0">
-                                        <img src="{{asset('images/temp/item-1.jpg')}}" alt="Title #1"/>
+                                        <img src="{{ Storage::url($car->img)}}" alt="Title #1"/>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a class="thumb" name="leaf" href="{{asset('images/temp/item-3.jpg')}}"
+                                    <a class="thumb" name="leaf" href="{{Storage::url($car->img1)}}"
                                        title="Title 2">
-                                        <img src="{{asset('images/temp/item-3.jpg')}}" alt="Title #3"/>
+                                        <img src="{{ Storage::url($car->img1)}}" alt="Title #3"/>
                                     </a>
                                 </li>
 

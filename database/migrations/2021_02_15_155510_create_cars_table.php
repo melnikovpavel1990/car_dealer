@@ -40,7 +40,7 @@ class CreateCarsTable extends Migration
             $table->boolean('fog_lights')->default(false);
             $table->boolean('heated_mirrors')->default(false);
             $table->boolean('tow_package')->default(false);
-            $table->text('img', 255);
+            $table->text('img', 255)->nullable();;
             $table->timestamps();
         });
         Schema::table('cars', function ($table) {

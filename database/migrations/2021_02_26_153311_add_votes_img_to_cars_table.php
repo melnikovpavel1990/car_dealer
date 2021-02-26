@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddVotesToCarsTable extends Migration
+class AddVotesImgToCarsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class AddVotesToCarsTable extends Migration
      */
     public function up()
     {
-        Schema::table('cars', function ($table) {
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users');
-
+        Schema::table('cars', function (Blueprint $table) {
+            $table->text('img1', 255)->nullable();
+            $table->text('img2', 255)->nullable();
+            $table->text('img3', 255)->nullable();
+            $table->text('img4', 255)->nullable();
         });
     }
 

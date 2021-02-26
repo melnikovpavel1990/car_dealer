@@ -8,6 +8,7 @@ use App\Models\CarModel;
 use App\Models\City;
 use App\Models\Color;
 use App\Models\Fuel;
+use App\Models\Images;
 use App\Models\Location;
 use App\Models\Transmission;
 use Illuminate\Http\Request;
@@ -41,12 +42,14 @@ class AddController extends Controller
         $colors = \App\Models\Color::all();
         $fuels = \App\Models\Fuel::all();
         $locations = \App\Models\Location::all();
-        if ($request->has('location_id')) {
-            $parentId = $request->get('location_id');
-            $data = City::where('location_id', $parentId)->get();
-            return ['success' => true, 'data' => $data];
-        }
-        return view('product.create', compact('marks', 'models', 'colors', 'fuels', 'locations', 'transmissions'));
+        $cities = \App\Models\City::all();
+//        if ($request->has('location_id')) {
+//            $parentId = $request->get('location_id');
+//            $data = City::where('location_id', $parentId)->get();
+//            return ['success' => true, 'data' => $data];
+//        }
+
+        return view('product.create', compact('marks', 'models', 'colors', 'fuels', 'locations', 'transmissions', 'cities'));
 
     }
 
@@ -58,10 +61,22 @@ class AddController extends Controller
      */
     public function store(Request $request)
     {
-//        $path = $request->file('image')->store('public/news');
-//        $params = $request->all();
-//        $params['image'] = $path;
-        Car::create($request->except('_token', 'img'));
+
+        $paths = [];
+        foreach ($request->file('img') as $file) {
+            $paths[] = $file->store('public/cars');
+        }
+        $params = $request->all();
+        $params['user_id'] = $request->user_id;
+        $params['img'] = $paths[0];
+        if (isset($params['img2'])) {
+            $params['img2'] = $paths[2];
+        }
+        $params['img1'] = $paths[1];
+//        $params['img2'] = $paths[2];
+//        $params['img3'] = $paths[3];
+//        $params['img4'] = $paths[4];
+        Car::create($params, $request->all());
         return redirect()->route('Home');
     }
 
@@ -92,7 +107,7 @@ class AddController extends Controller
         $fuels = \App\Models\Fuel::all();
         $locations = \App\Models\Location::all();
         $transmissions = \App\Models\Transmission::all();
-        return view('product.edit', compact('car','marks', 'models', 'cities', 'colors', 'fuels', 'locations', 'transmissions'));
+        return view('product.edit', compact('car', 'marks', 'models', 'cities', 'colors', 'fuels', 'locations', 'transmissions'));
 
     }
 
@@ -105,14 +120,25 @@ class AddController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $paths = [];
+        foreach ($request->file('img') as $file) {
+            $paths[] = $file->store('public/cars');
+        }
+        $params = $request->all();
+        $params['user_id'] = $request->user_id;
+        $params['img'] = $paths[0];
+        if (isset($params['img2'])) {
+            $params['img2'] = $paths[2];
+        }
+        $params['img1'] = $paths[1];
         $car = Car::findOrFail($id);
         $car->fill($request->all());
 
         foreach (['air_conditioning', 'Bluetooth', 'GPS', 'heated_seats', 'power_seat', 'speed_control', 'ABS', 'airbag', 'alarm',
-                     'fog_lights', 'heated_mirrors', 'tow_package'] as $value){
+                     'fog_lights', 'heated_mirrors', 'tow_package'] as $value) {
             if ($request->input($value) == 1) {
                 $car->$value = $request->input('$value', 1);
-            }else{
+            } else {
                 $car->$value = $request->input('$value', 0);
             }
         }

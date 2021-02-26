@@ -26,7 +26,7 @@
                     <article>
 
                         <a href="{{route('one_car', ['id' => $car->id])}}">
-                            <img src="images/temp/thumb-1.jpg"  alt="" style="max-width: 230px">
+                            <img src="{{Storage::url($car->img1)}}"  alt="" style="max-width: 230px">
                         </a>
 
                         <div class="detailed">

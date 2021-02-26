@@ -16,7 +16,7 @@
                 <ul class="slides">
                     @foreach($paid as $car)
                         <li>
-                            <img src="images/sliders/slide-1.jpg" alt=""/>
+                            <img src="{{ Storage::url($car->img1)}}" alt=""/>
 
                             <div class="caption">
                                 <div class="caption-entry">
@@ -70,7 +70,7 @@
                             <article>
 
                                 <a href="{{route('one_car', ['id' => $car->id])}}">
-                                    <img src="images/temp/thumb-1.jpg" alt="">
+                                    <img style="max-width: 80%" src="{{ Storage::url($car->img1)}}" alt="">
                                 </a>
 
                                 <div class="detailed">

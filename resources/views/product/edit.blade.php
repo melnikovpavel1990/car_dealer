@@ -284,7 +284,7 @@
 
                                     Select image to upload:
                                     <input type="file" name="img[]" id="id_image" multiple="multiple"
-                                           value="Upload Image" accept="image/jpg, image/jpeg">
+                                           value="{{$car -> img, $car -> img1}}" accept="image/jpg, image/jpeg">
 
                                 </div><!--/ .upload-holder-->
 
