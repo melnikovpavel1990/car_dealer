@@ -8,6 +8,9 @@
                     @csrf
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Title</label>
+                        @error('title')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <input name="title" type="text" class="form-control" id="">
                     </div>
                     <div class="form-group">
@@ -20,6 +23,9 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Content</label>
+                        @error('content')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <textarea name="content" class="form-control" id="exampleFormControlTextarea1" rows="6"></textarea>
                     </div>
 

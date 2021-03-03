@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CarsRequest;
 
 use App\Models\Car;
 use App\Models\CarModel;
@@ -34,7 +35,7 @@ class AddController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(CarsRequest $request)
     {
         $marks = \App\Models\CarMark::all();
         $models = \App\Models\CarModel::all();
@@ -59,7 +60,7 @@ class AddController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CarsRequest $request)
     {
 
         $paths = [];
@@ -118,7 +119,7 @@ class AddController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CarsRequest $request, $id)
     {
         $paths = [];
         foreach ($request->file('img') as $file) {

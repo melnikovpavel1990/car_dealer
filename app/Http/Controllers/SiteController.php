@@ -6,6 +6,7 @@ use App\Models\Author;
 use App\Models\Car;
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class SiteController extends Controller
 {
@@ -73,4 +74,5 @@ class SiteController extends Controller
 
         return view('pages.autoads', compact('cars'));
     }
+
 }

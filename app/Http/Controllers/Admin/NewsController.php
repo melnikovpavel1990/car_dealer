@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Author;
 use App\Models\News;
+use App\Http\Requests\NewsRequest;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -38,7 +39,7 @@ class NewsController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NewsRequest $request)
     {
         $path = $request->file('image')->store('public/news');
         $params = $request->all();
@@ -78,7 +79,7 @@ class NewsController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(NewsRequest $request, $id)
     {
         $path = $request->file('image')->store('public/news');
         $params = $request->all();
