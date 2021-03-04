@@ -16,7 +16,7 @@
                 <ul class="slides">
                     @foreach($paid as $car)
                         <li>
-                            <img src="{{ Storage::url($car->img1)}}" alt=""/>
+                            <img width="1000" height="700" src="{{ Storage::url($car->img1)}}" alt=""/>
 
                             <div class="caption">
                                 <div class="caption-entry">
@@ -43,10 +43,10 @@
 
 
             <!-- - - - - - - - - - - end Slider - - - - - - - - - - - - - -->
-
             <!-- - - - - - - - - - - Search Panel - - - - - - - - - - - - - -->
-
-
+            <div class="widget_custom_search">
+                @include('include.calculate')
+            </div>
             <!-- - - - - - - - - - end Search Panel - - - - - - - - - - - - -->
 
         </div><!--/ .top-panel-->
@@ -109,9 +109,6 @@
                 <!-- - - - - - - - - - - - - - - Sidebar - - - - - - - - - - - - - - - - -->
 
                 <aside id="sidebar" class="one-third column">
-
-                    @include('include.calculate')
-
 
                     <div class="widget-container widget_recent_entries">
 

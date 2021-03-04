@@ -3,7 +3,7 @@
     <div class="widget-head">
 
         <h3 class="widget-title">Loan Calculator</h3>
-
+        <h3 class="">1 USD = <span style="color: coral">{{$usd}}</span> BYN</h3>
     </div>
 
     <div class="entry-loan">

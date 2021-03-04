@@ -41,8 +41,8 @@
             </fieldset>
             <fieldset>
                 <label for="price_max">Price max:</label>
-                <select name="price_max" id="price_max">
-                    <option selected=""></option>
+                <select name="price_max" id="price_max" >
+                    <option selected="{{ old('price_max') }}"></option>
                     @for($i=0; $i<=20000; $i+=1000)
                         <option>{{$i}}</option>
                     @endfor
@@ -52,6 +52,7 @@
                 <label>Year from::</label>
                 <select name="year_from" id="year_from">
                     <option selected=""></option>
+
                     @for($i=1980; $i<=2021; $i++)
                         <option>{{$i}}</option>
                     @endfor

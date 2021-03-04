@@ -36,7 +36,7 @@ Route::put('/product/{id}/update', 'AddController@update')->name('PostAd.update'
 Route::delete('/product/{id}/destroy', 'AddController@destroy')->name('PostAd.destroy');
 
 
-Route::post('/telegram', 'SiteController@telegram')->name('telegram');
+Route::post('/telegram', 'ContactController@telegram')->name('telegram');
 
 //Route::prefix('admins')->namespace('Admin')//->middleware(['role:admin'])
 //    ->group(function () {

@@ -75,7 +75,6 @@
 
 @include('include.search')
 
-@include('include.calculate')
 
 
 

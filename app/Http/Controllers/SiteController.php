@@ -12,10 +12,14 @@ class SiteController extends Controller
 {
     public function index()
     {
+        $link='https://www.nbrb.by/api/exrates/rates/145';
+        $date= file_get_contents($link);
+        $course=\GuzzleHttp\json_decode($date, true);
+        $usd=$course['Cur_OfficialRate'];
         $cars = Car::orderBy('id', 'DESC')->get();
         $paid = Car::orderBy('id', 'DESC')->paginate(5);
         $news = News::orderBy('id', 'DESC')->paginate(3);
-        return view('index', compact('news', 'cars', 'paid'));
+        return view('index', compact('news', 'cars', 'paid', 'usd'));
     }
 
     public function one_car($id)
@@ -49,24 +53,7 @@ class SiteController extends Controller
         return view('pages.contacts');
     }
 
-    public function telegram()
-    {
-//        if ((isset($_POST['name']) && $_POST['name'] != "") && (isset($_POST['email']) && $_POST['email'] != ""
-//                && (isset($_POST['message']) && $_POST['message'] != ""))){
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-        $message = $_POST['message'];
 
-        $token = "1519109465:AAE6t6qCvbDUa_xblwmaB2i8RzvjA-kQO0w";
-        $chat_id = "730048692";
-        $arr = array(
-            'name ' => $name,
-            'email' => $email,
-            'message' => $message
-        );
-        $txt = null;
-        return view('pages.telegram', compact('token', 'message', 'chat_id', 'arr', 'txt'));
-    }
     public function userAd()
     {
 
