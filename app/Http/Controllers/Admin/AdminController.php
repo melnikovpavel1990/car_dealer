@@ -17,7 +17,6 @@ class AdminController extends Controller
     public function index()
     {
         return view('admin.dashboard');
-
     }
 
     /**
@@ -27,7 +26,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-//        return view('admin.car_model.create');
+//
     }
 
     /**
@@ -38,8 +37,7 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-//        Marka::create($request->except('_token'));
-//        return redirect()->route('admin_car_model');
+//
     }
 
     /**
@@ -50,7 +48,7 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-//        $mark = Marka::find($id);
+//
     }
 
     /**
@@ -61,8 +59,7 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-//        $mark = Marka::findOrFail($id);
-//        return view('admin.car_model.edit', ['mark' => $marke]);
+     //
     }
 
     /**

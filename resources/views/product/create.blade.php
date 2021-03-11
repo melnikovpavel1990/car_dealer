@@ -38,7 +38,6 @@
                                     <p>
                                         <label>Mark:</label>
                                         <select name="mark_id">
-                                            <option selected="selected">Select make</option>
                                             @foreach($marks as $mark)
                                                 <option value="{{$mark->id}}">{{$mark->mark}}</option>
                                             @endforeach
@@ -54,6 +53,9 @@
                                         </select>
                                     </p>
                                     <label>Milleage:</label>
+                                    @error('milleage')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                     <input name="milleage" type="text">
                                     </p>
 
@@ -75,6 +77,9 @@
 
                                     <p class="three columns omega" style="margin-left: 0">
                                         <label>Year:</label>
+                                    @error('year')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                         <select name="year" id="year">
                                         @for($i=1980; $i<=2021; $i++)
                                             <option value="{{$i}}">{{$i}}</option>
@@ -86,18 +91,21 @@
                                     <p class="three columns alpha" >
                                         <label>Select color:</label>
                                         <select name="color_id">
-                                            <option value=""></option>
                                             @foreach($colors as $color)
                                                 <option value="{{ $color->id }}">{{$color->color}}</option>
                                             @endforeach
                                         </select>
 
                                     </p>
+
                                     <p class="three columns alpha">
+
                                         <label>Price:</label>
                                         <input name="price" type="text">
                                     </p>
-
+                                    @error('price')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div><!--/ .five-->
 
                                 <div class="five columns omega">
@@ -173,7 +181,9 @@
 
                                     <p>
                                         <label>Title:</label>
-
+                                    @error('title')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                         <input name="title" type="text" value="title">
                                     </p>
 
@@ -274,7 +284,10 @@
                                     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
                                     Select image to upload:
-                                    <input type="file" name="img[]" id="id_image" multiple="multiple" enctype="multipart/form-data"
+                                    @error('image')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                    <input type="file" name="image[]" id="id_image" multiple="multiple" enctype="multipart/form-data"
                                            value="Upload Image" accept="image/jpg, image/jpeg">
 
                                 </div><!--/ .upload-holder-->
@@ -289,7 +302,9 @@
                         <script type='text/javascript'>
                             $(function() {
                                 var // Define maximum number of files.
-                                    max_file_number = 2,
+                                    max_file_number = 5,
+                                    // Define maximum number of files.
+                                    min_file_number = 1,
                                     // Define your form id or class or just tag.
                                     $form = $('form'),
                                     // Define your upload field class or id or tag.
@@ -300,8 +315,8 @@
                                 $button.prop('disabled', 'disabled');
                                 $file_upload.on('change', function () {
                                     var number_of_images = $(this)[0].files.length;
-                                    if (number_of_images > max_file_number) {
-                                        alert('You can upload maximum 2 files.');
+                                    if (number_of_images > max_file_number & number_of_images >= min_file_number) {
+                                        alert('You can upload maximum 5 files.');
                                         $(this).val('');
                                         $button.prop('disabled', 'disabled');
                                     } else {
@@ -311,7 +326,7 @@
                             });
                          </script>
 
-                        </script>
+
                     </div><!--/ .cart-holder-->
 
                 </div><!--/ .form-entry-->

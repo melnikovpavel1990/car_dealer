@@ -16,7 +16,8 @@
                 <ul class="slides">
                     @foreach($paid as $car)
                         <li>
-                            <img width="1000" height="700" src="{{ Storage::url($car->img1)}}" alt=""/>
+
+                            <img src="{{ Storage::url($car->images[0]->image)}}" alt=""/>
 
                             <div class="caption">
                                 <div class="caption-entry">
@@ -66,11 +67,13 @@
                     <h3 class="widget-title">Recent Automobiles</h3>
 
                     <section id="change-items" class="item-grid">
+
                         @foreach($cars as $car)
                             <article>
-
                                 <a href="{{route('one_car', ['id' => $car->id])}}">
-                                    <img style="max-width: 80%" src="{{ Storage::url($car->img1)}}" alt="">
+
+                                    <img style="max-width: 80%" src="{{ Storage::url($car->images[0]->image)}}" alt="">
+
                                 </a>
 
                                 <div class="detailed">
@@ -92,7 +95,8 @@
                                         </li>
                                     </ul><!--/ .list-entry-->
 
-                                    <a href="{{route('one_car', ['id' => $car->id])}}" class="button orange">Details</a>
+                                    <a href="{{route('one_car', ['id' => $car->id])}}"
+                                       class="button orange">Details</a>
 
                                 </div><!--/ .detailed-->
 

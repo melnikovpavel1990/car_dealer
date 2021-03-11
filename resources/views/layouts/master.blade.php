@@ -100,8 +100,8 @@
     <!-- - - - - - - - - - - - - - end Header - - - - - - - - - - - - - - - - -->
     <div class="wrap">
 
-
         @yield('content')
+
     </div><!--/ .wrap-->
 
     ><!--/ .account-wrapper-->

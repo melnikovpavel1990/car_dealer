@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Author;
 use App\Models\Car;
+use App\Models\Images;
 use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -24,9 +25,14 @@ class SiteController extends Controller
 
     public function one_car($id)
     {
-
         $car = Car::findOrFail($id);
-        return view('product.onecar', compact('car'));
+        $images = $car ->images;
+        if (\Auth::user()){
+        $id_user = \Auth::user()->id;
+        }else ($id_user=null);
+        //$car_id = $id;
+        //$images = Images::select('image')->where('car_id', '=', $car_id)->get();
+        return view('product.onecar', compact('car', 'images', 'id_user'));
     }
 
     public function news()

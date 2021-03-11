@@ -13,7 +13,8 @@
             <section id="content" class="two-thirds column">
 
                 <article class="item clearfix">
-                    @if(Auth::user()->id == $car->user_id)
+
+                    @if($id_user == $car->user_id)
                         <a class="btn btn-info"
                            href="{{route('PostAd.edit', ['id' => $car->id])}}">Редактировать
                         </a>
@@ -33,32 +34,30 @@
                             <div id="slideshow" class="slideshow clearfix"></div>
                         </div><!--/ .slideshow-container-->
 
-                        <div id="thumbs" class="clearfix">
 
-                            <!--/КАРТИНКИ-->
-                            <ul class="thumbs list-image clearfix" style="display: inline;">
+                        <div id="gallery" class="gallery">
 
-                                <li>
-                                    <a class="thumb" name="leaf" href=""
-                                       title="Title 0">
-                                        <img src="{{ Storage::url($car->img)}}" alt="Title #1"/>
-                                    </a>
-                                </li>
+                            <div class="slideshow-container">
+                                <div id="loading" class="loader"></div>
+                                <div id="slideshow" class="slideshow clearfix"></div>
+                            </div><!--/ .slideshow-container-->
 
-                                <li>
-                                    <a class="thumb" name="leaf" href="{{Storage::url($car->img1)}}"
-                                       title="Title 2">
-                                        <img src="{{ Storage::url($car->img1)}}" alt="Title #3"/>
-                                    </a>
-                                </li>
+                            <div id="thumbs" class="clearfix">
+                                @foreach($car->images as $image)
+                                <ul class="thumbs list-image clearfix">
+
+                                    <li>
+                                        <a class="thumb" name="leaf" href="{{ Storage::url($image->image)}}" title="Title 1">
+                                            <img src="{{ Storage::url($image->image)}}" alt="Title #1" />
+                                        </a>
+                                    </li>
 
 
-                            </ul><!--/ .thumbs-->
+                                </ul><!--/ .thumbs-->
+                                @endforeach
+                            </div><!--/ #thumbs-->
 
-                        </div><!--/   картинки #thumbs-->
-
-                    </div><!--/ #gallery-->
-
+                        </div><!--/ #gallery-->
 
                     <div class="entry-item">
 

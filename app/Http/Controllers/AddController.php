@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CarsRequest;
 
 use App\Models\Car;
+use App\Models\CarMark;
 use App\Models\CarModel;
 use App\Models\City;
 use App\Models\Color;
@@ -35,15 +36,15 @@ class AddController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(CarsRequest $request)
+    public function create(Request $request)
     {
-        $marks = \App\Models\CarMark::all();
-        $models = \App\Models\CarModel::all();
-        $transmissions = \App\Models\Transmission::all();
-        $colors = \App\Models\Color::all();
-        $fuels = \App\Models\Fuel::all();
-        $locations = \App\Models\Location::all();
-        $cities = \App\Models\City::all();
+        $marks = CarMark::all();
+        $models = CarModel::all();
+        $transmissions = Transmission::all();
+        $colors = Color::all();
+        $fuels = Fuel::all();
+        $locations = Location::all();
+        $cities = City::all();
 //        if ($request->has('location_id')) {
 //            $parentId = $request->get('location_id');
 //            $data = City::where('location_id', $parentId)->get();
@@ -62,22 +63,14 @@ class AddController extends Controller
      */
     public function store(CarsRequest $request)
     {
-
-        $paths = [];
-        foreach ($request->file('img') as $file) {
-            $paths[] = $file->store('public/cars');
-        }
         $params = $request->all();
         $params['user_id'] = $request->user_id;
-        $params['img'] = $paths[0];
-        if (isset($params['img2'])) {
-            $params['img2'] = $paths[2];
+        $car = Car::create($params, $request->all());
+        foreach ($request->file('image') as $file) {
+            $path = $file->store('public/cars');
+            Images::create(['car_id' => $car->id, 'image' => $path]);
         }
-        $params['img1'] = $paths[1];
-//        $params['img2'] = $paths[2];
-//        $params['img3'] = $paths[3];
-//        $params['img4'] = $paths[4];
-        Car::create($params, $request->all());
+        
         return redirect()->route('Home');
     }
 
@@ -101,13 +94,13 @@ class AddController extends Controller
     public function edit($id)
     {
         $car = Car::findOrFail($id);
-        $marks = \App\Models\CarMark::all();
-        $models = \App\Models\CarModel::all();
-        $cities = \App\Models\City::all();
-        $colors = \App\Models\Color::all();
-        $fuels = \App\Models\Fuel::all();
-        $locations = \App\Models\Location::all();
-        $transmissions = \App\Models\Transmission::all();
+        $marks = CarMark::all();
+        $models = CarModel::all();
+        $cities = City::all();
+        $colors = Color::all();
+        $fuels = Fuel::all();
+        $locations = Location::all();
+        $transmissions = Transmission::all();
         return view('product.edit', compact('car', 'marks', 'models', 'cities', 'colors', 'fuels', 'locations', 'transmissions'));
 
     }
@@ -121,20 +114,9 @@ class AddController extends Controller
      */
     public function update(CarsRequest $request, $id)
     {
-        $paths = [];
-        foreach ($request->file('img') as $file) {
-            $paths[] = $file->store('public/cars');
-        }
         $params = $request->all();
         $params['user_id'] = $request->user_id;
-        $params['img'] = $paths[0];
-        if (isset($params['img2'])) {
-            $params['img2'] = $paths[2];
-        }
-        $params['img1'] = $paths[1];
         $car = Car::findOrFail($id);
-        $car->fill($request->all());
-
         foreach (['air_conditioning', 'Bluetooth', 'GPS', 'heated_seats', 'power_seat', 'speed_control', 'ABS', 'airbag', 'alarm',
                      'fog_lights', 'heated_mirrors', 'tow_package'] as $value) {
             if ($request->input($value) == 1) {
@@ -143,15 +125,16 @@ class AddController extends Controller
                 $car->$value = $request->input('$value', 0);
             }
         }
+        $car->fill($request->all());
         $car->save();
+        if ($request->file('image')  != null) {
+            foreach ($request->file('image') as $file) {
+                $path = $file->store('public/cars');
+                $img = (new \App\Models\Images)->fill(['car_id' => $car->id, 'image' => $path]);
+                $img->save();
+            }
+        }
         return redirect()->route('userAd');
-//        $path = $request->file('image')->store('public/news');
-//        $params = $request->all();
-//        $params['image'] = $path;
-//        $car = Car::findOrFail($id);
-//        $new->fill($params,$request->all());
-//        $new->save();
-//        return redirect()->route('admin_news');
     }
 
     /**
@@ -163,6 +146,8 @@ class AddController extends Controller
     public function destroy($id)
     {
         $car = Car::find($id);
+        $img = Images::where('car_id', '=', $car->id);
+        $img->delete();
         $car->delete();
         return redirect()->route('userAd');
     }

@@ -60,7 +60,7 @@
                                         </select>
                                     </p>
                                     <label>Milleage:</label>
-                                    <input name="milleage" type="text" value="{{$car->milleage}}" >
+                                    <input name="milleage" type="text" value="{{$car->milleage}}">
                                     </p>
 
 
@@ -184,7 +184,8 @@
                                 <p>
                                     <label>Description:</label>
 
-                                    <textarea name="description" value="{{$car->description}}">{{$car->description}}</textarea>
+                                    <textarea name="description"
+                                              value="{{$car->description}}">{{$car->description}}</textarea>
                                 </p>
 
                                 <div class=" eight columns alpha">
@@ -284,8 +285,7 @@
 
                                     Select image to upload:
                                     <input type="file" name="img[]" id="id_image" multiple="multiple"
-                                           value="{{$car -> img, $car -> img1}}" accept="image/jpg, image/jpeg">
-
+                                           value="" accept="image/jpg, image/jpeg">
                                 </div><!--/ .upload-holder-->
 
                             </div><!--/ .cart-content-->

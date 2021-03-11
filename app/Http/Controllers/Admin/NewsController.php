@@ -81,11 +81,15 @@ class NewsController extends Controller
      */
     public function update(NewsRequest $request, $id)
     {
-        $path = $request->file('image')->store('public/news');
-        $params = $request->all();
-        $params['image'] = $path;
+        if ($request->file('image') != null) {
+            $path = $request->file('image')->store('public/news');
+            $params = $request->all();
+            $params['image'] = $path;
+        } else {
+            $params = $request->all();
+        }
         $new = News::findOrFail($id);
-        $new->fill($params,$request->all());
+        $new->fill($params, $request->all());
         $new->save();
         return redirect()->route('admin_news');
     }

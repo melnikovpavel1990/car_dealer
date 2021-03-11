@@ -1,5 +1,6 @@
 @extends('layouts.master')
 
+@title('sad')
 
 @section('content')
 
@@ -17,8 +18,6 @@
 
                     <h3 class="section-title">Recent Automobiles</h3>
 
-
-
                 </div><!--/ .page-header-->
 
                 <section id="change-items" class="item-list">
@@ -26,7 +25,7 @@
                     <article>
 
                         <a href="{{route('one_car', ['id' => $car->id])}}">
-                            <img src="{{Storage::url($car->img1)}}"  alt="" style="max-width: 230px">
+                            <img src="{{Storage::url($car->images[0]->image)}}"  alt="" style="max-width: 200px; max-height: 146px">
                         </a>
 
                         <div class="detailed">
@@ -34,9 +33,9 @@
                             <h6 class="title-item">
                                 <a href="{{route('one_car', ['id' => $car->id])}}">{{$car->mark->mark}}  {{$car->model->model}}</a>
                             </h6>
-
-                                <span class="price">${{$car->price}}</span>
-                            <a href="{{route('one_car', ['id' => $car->id])}}" class="button orange">Details</a>
+                            <h6 class="title-item">
+                                <span style="color: coral">${{$car->price}}</span>
+                            </h6>
 
                             <div class="clear"></div>
 
