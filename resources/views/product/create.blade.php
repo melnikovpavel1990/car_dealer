@@ -68,10 +68,47 @@
                                     <p class="not-active">
                                         <label>Model:</label>
                                         <select name="model_id">
-                                            @foreach($models as $model)
-                                                <option value="{{ $model->id }}">{{$model->model}}</option>
-                                            @endforeach
+                                            <script>
+                                                $(function () {
+                                                    var loader = $('#loader'),
+                                                        category = $('select[name="mark_id"]'),
+                                                        subcategory = $('select[name="model_id"]');
+
+                                                    loader.hide();
+                                                    subcategory.attr('disabled','disabled')
+
+                                                    subcategory.change(function(){
+                                                        var id = $(this).val();
+                                                        if(!id){
+                                                            subcategory.attr('disabled','disabled')
+                                                        }
+                                                    })
+
+                                                    category.change(function() {
+                                                        var id= $(this).val();
+                                                        if(id){
+                                                            loader.show();
+                                                            subcategory.attr('disabled','disabled')
+
+                                                            $.get('{{url('/product/create-data?mark_id=')}}'+id)
+                                                                .then(function(data){
+                                                                    console.log(data.data)
+                                                                    var s='<option value="">---select--</option>';
+                                                                    data.data.forEach((element) => {
+                                                                        s +='<option value="'+element.id+'">'+element.model+'</option>'
+                                                                    })
+                                                                    subcategory.removeAttr('disabled')
+                                                                    subcategory.html(s);
+                                                                    loader.hide();
+                                                                });
+
+                                                        }
+
+                                                    })
+                                                })
+                                            </script>
                                         </select>
+
                                     </p>
 
 
@@ -139,37 +176,48 @@
 
                                     <p class="three columns omega">
                                         <label>City:</label>
-                                        <select name="city_id">
-                                        @foreach($cities as $city)
+                                        <select name="city_id"  id="city_id">
+                                            <script>
+                                                $(function () {
+                                                    var loader = $('#loader'),
+                                                        category = $('select[name="location_id"]'),
+                                                        subcategory = $('select[name="city_id"]');
 
-                                                <option value="{{ $city->id }}">  {{$city->city}}  </option>
+                                                    loader.hide();
+                                                    subcategory.attr('disabled','disabled')
 
-                                        @endforeach
+                                                    subcategory.change(function(){
+                                                        var id = $(this).val();
+                                                        if(!id){
+                                                            subcategory.attr('disabled','disabled')
+                                                        }
+                                                    })
+
+                                                    category.change(function() {
+                                                        var id= $(this).val();
+                                                        if(id){
+                                                            loader.show();
+                                                            subcategory.attr('disabled','disabled')
+
+                                                            $.get('{{url('/product/create-data?location_id=')}}'+id)
+                                                                .then(function(data){
+                                                                    console.log(data.data)
+                                                                    var s='<option value="">---select--</option>';
+                                                                    data.data.forEach((element) => {
+                                                                        s +='<option value='+element.id+'>'+element.city+'</option>'
+                                                                    })
+                                                                    subcategory.removeAttr('disabled')
+                                                                    subcategory.html(s);
+                                                                    loader.hide();
+                                                                });
+
+                                                        }
+
+                                                    })
+                                                })
+                                            </script>
+
                                         </select>
-{{--                                            @foreach($cities as $city)--}}
-{{--                                                @isset($location->id )--}}
-{{--                                                    <option value="{{ $city->id }}"--}}
-{{--                                                    @if($city -> locations_id == $location->id)  @endif>--}}
-{{--                                                        {{$city->city}}  </option>--}}
-{{--                                                @endisset--}}
-{{--                                            @endforeach--}}
-
-
-                                    </p>
-
-                                    <script>
-                                        $(function () {
-                                            $(".league").change(function (){
-                                                var id
-                                            })
-                                        });
-                                    </script>
-
-
-
-
-
-
 
                                 </div><!--/ .five-->
 

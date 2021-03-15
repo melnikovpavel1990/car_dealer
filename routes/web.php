@@ -30,11 +30,14 @@ Route::get('/userAd', 'SiteController@userAd')->name('userAd');
 Route::match(['get', 'post'], '/contacts', 'SiteController@contacts')->name('Contacts');
 
 Route::get('/product/create', 'AddController@create')->name('PostAd.create');
+Route::get('/product/create-data', 'AddController@data');
+
 Route::post('/product/create', 'AddController@store')->name('PostAd.store');
+
+Route::get('/dropdown-data','DropdownController@data');
 Route::get('/product/{id}/edit', 'AddController@edit')->name('PostAd.edit');
 Route::put('/product/{id}/update', 'AddController@update')->name('PostAd.update');
 Route::delete('/product/{id}/destroy', 'AddController@destroy')->name('PostAd.destroy');
-
 
 Route::post('/telegram', 'ContactController@telegram')->name('telegram');
 

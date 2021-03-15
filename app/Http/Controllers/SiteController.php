@@ -30,8 +30,6 @@ class SiteController extends Controller
         if (\Auth::user()){
         $id_user = \Auth::user()->id;
         }else ($id_user=null);
-        //$car_id = $id;
-        //$images = Images::select('image')->where('car_id', '=', $car_id)->get();
         return view('product.onecar', compact('car', 'images', 'id_user'));
     }
 

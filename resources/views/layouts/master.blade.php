@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="{{ asset("sliders/flexslider/flexslider.css") }}" media="screen" />
     <link rel="stylesheet" href="{{ asset("fancybox/jquery.fancybox.css") }}" media="screen" />
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <!-- HTML5 Shiv + detect touch events -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -104,7 +106,7 @@
 
     </div><!--/ .wrap-->
 
-    ><!--/ .account-wrapper-->
+    <!--/ .account-wrapper-->
 
 
 
@@ -220,7 +222,7 @@
         <script src="js/selectivizr-and-extra-selectors.min.js"></script>
         <![endif]-->
         <script src="sliders/flexslider/jquery.flexslider-min.js"></script>
-        <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+{{--        <script src="http://maps.google.com/maps/api/js?sensor=false"></script>--}}
         <script src="js/jquery.gmap.min.js"></script>
         <script src="js/jquery-impromptu.js"></script>
         <script src="js/custom.js"></script>

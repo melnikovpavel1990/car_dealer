@@ -1,6 +1,5 @@
 @extends('layouts.master')
 
-@title('sad')
 
 @section('content')
 

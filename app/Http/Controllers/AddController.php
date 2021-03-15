@@ -36,22 +36,27 @@ class AddController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function data(Request $request){
+        if($request->has('location_id')){
+            $parentId = $request->get('location_id');
+            $data = City::where('location_id', $parentId)->get();
+            return ['data'=>$data];
+        }
+        if($request->has('mark_id')){
+            $parentId = $request->get('mark_id');
+            $data = CarModel::where('mark_id', $parentId)->get();
+            return ['data'=>$data];
+        }
+    }
+
     public function create(Request $request)
     {
         $marks = CarMark::all();
-        $models = CarModel::all();
         $transmissions = Transmission::all();
         $colors = Color::all();
         $fuels = Fuel::all();
         $locations = Location::all();
-        $cities = City::all();
-//        if ($request->has('location_id')) {
-//            $parentId = $request->get('location_id');
-//            $data = City::where('location_id', $parentId)->get();
-//            return ['success' => true, 'data' => $data];
-//        }
-
-        return view('product.create', compact('marks', 'models', 'colors', 'fuels', 'locations', 'transmissions', 'cities'));
+        return view('product.create', compact('marks', 'colors', 'fuels', 'locations', 'transmissions'));
 
     }
 
@@ -70,7 +75,6 @@ class AddController extends Controller
             $path = $file->store('public/cars');
             Images::create(['car_id' => $car->id, 'image' => $path]);
         }
-        
         return redirect()->route('Home');
     }
 
