@@ -48,12 +48,16 @@ Route::post('/telegram', 'ContactController@telegram')->name('telegram');
 //    });
 
 Route::get('/admins', 'Admin\\AdminController@index')->name('admin');
-Route::get('/admins/news', 'Admin\\NewsController@index')->name('admin_news');
+Route::get('/admins/news', 'Admin\\NewsController@index')->name('admin.news');
 Route::get('/admins/news/create', 'Admin\\NewsController@create')->name('admin.news.create');
 Route::post('/admins/news/create', 'Admin\\NewsController@store')->name('admin.news.store');
 Route::get('/admins/news/{id}/edit', 'Admin\\NewsController@edit')->name('admin.news.edit');
 Route::put('/admins/news/{id}/update', 'Admin\\NewsController@update')->name('admin.news.update');
 Route::delete('/admins/news/{id}/destroy', 'Admin\\NewsController@destroy')->name('admin.news.destroy');
+
+Route::get('/admins/cars', 'Admin\\CarsController@index')->name('admin.cars');
+Route::delete('/admins/cars/{id}/destroy', 'Admin\\CarsController@destroy')->name('admin.cars.destroy');
+
 
 
 

@@ -36,16 +36,17 @@ class AddController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function data(Request $request){
-        if($request->has('location_id')){
+    public function data(Request $request)
+    {
+        if ($request->has('location_id')) {
             $parentId = $request->get('location_id');
             $data = City::where('location_id', $parentId)->get();
-            return ['data'=>$data];
+            return ['data' => $data];
         }
-        if($request->has('mark_id')){
+        if ($request->has('mark_id')) {
             $parentId = $request->get('mark_id');
             $data = CarModel::where('mark_id', $parentId)->get();
-            return ['data'=>$data];
+            return ['data' => $data];
         }
     }
 
@@ -131,7 +132,7 @@ class AddController extends Controller
         }
         $car->fill($request->all());
         $car->save();
-        if ($request->file('image')  != null) {
+        if ($request->file('image') != null) {
             foreach ($request->file('image') as $file) {
                 $path = $file->store('public/cars');
                 $img = (new \App\Models\Images)->fill(['car_id' => $car->id, 'image' => $path]);
@@ -153,6 +154,6 @@ class AddController extends Controller
         $img = Images::where('car_id', '=', $car->id);
         $img->delete();
         $car->delete();
-        return redirect()->route('userAd');
+        return redirect()->route('admin.cars');
     }
 }

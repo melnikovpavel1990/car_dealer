@@ -16,39 +16,40 @@
                 <select name="mark">
                     <option selected=""></option>
                     @foreach($cars as $car)
-
                         <option value="{{$car->mark_id}}">{{$car->mark->mark}}</option>
                     @endforeach
                 </select>
             </fieldset>
 
             <fieldset class="not-active">
-                <label>Model:</label>
-                <select name="model">
-                    <option selected=""></option>
-                    @foreach($cars as $car)
-                        <option value="{{$car->model_id}}">{{$car->model->model}}</option>
-                    @endforeach
-                </select>
+                
             </fieldset>
+            @error('price_max')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
             <fieldset>
                 <label for="price_min">Price min:</label>
+
                 <select name="price_min" id="price_min">
                     <option selected=""></option>
                 @for($i=0; $i<=20000; $i+=1000)
                         <option>{{$i}}</option>
                     @endfor
                 </select>
+
             </fieldset>
             <fieldset>
                 <label for="price_max">Price max:</label>
                 <select name="price_max" id="price_max" >
-                    <option selected="{{ old('price_max') }}"></option>
+                    <option  selected="{{ old('price_max') }}"></option>
                     @for($i=0; $i<=20000; $i+=1000)
                         <option>{{$i}}</option>
                     @endfor
                 </select>
             </fieldset>
+            @error('year_to')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
             <fieldset>
                 <label>Year from::</label>
                 <select name="year_from" id="year_from">

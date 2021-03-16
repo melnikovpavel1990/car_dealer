@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SearchRequest;
 use App\Models\Car;
 use App\Models\Marka;
 use App\Models\Model;
@@ -10,7 +11,7 @@ use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
-    public function index(Request $request)
+    public function index(SearchRequest $request)
     {
         $query = Car::query();
         if ($request->filled('mark')) {
@@ -39,7 +40,6 @@ class SearchController extends Controller
         }
 
         $cars = $query->paginate(22)->withPath($request->getQueryString());
-
 
         return view('pages.autoads', compact('cars'));
     }

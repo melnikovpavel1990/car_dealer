@@ -19,7 +19,7 @@ class Car extends Model
     }
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(\App\User::class);
     }
     public function model()
     {
@@ -47,6 +47,10 @@ class Car extends Model
 
     public function images(){
         return $this->hasMany(Images::class);
+    }
+
+    public function color(){
+        return $this->belongsTo(Color::class);
     }
 
 

@@ -17,7 +17,9 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::orderBy('id', 'DESC')->paginate(2);
+        $news = News::orderBy('id', 'DESC')
+            ->with('author')
+            ->paginate(2);
         return view('admin.news.index', compact('news'));
     }
 
@@ -45,7 +47,7 @@ class NewsController extends Controller
         $params = $request->all();
         $params['image'] = $path;
         News::create($params, $request->except('_token'));
-        return redirect()->route('admin_news');
+        return redirect()->route('admin.news');
     }
 
     /**
@@ -91,7 +93,7 @@ class NewsController extends Controller
         $new = News::findOrFail($id);
         $new->fill($params, $request->all());
         $new->save();
-        return redirect()->route('admin_news');
+        return redirect()->route('admin.news');
     }
 
     /**
@@ -102,11 +104,8 @@ class NewsController extends Controller
      */
     public function destroy(News $new, $id)
     {
-
-//        News::find($id) -> destroy($id);
         $new = News::find($id);
         $new->delete();
-        //News::destroy($id);
-        return redirect()->route('admin_news');
+        return redirect()->route('admin.news');
     }
 }

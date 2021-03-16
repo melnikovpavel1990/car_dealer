@@ -17,7 +17,7 @@ class SiteController extends Controller
         $date= file_get_contents($link);
         $course=\GuzzleHttp\json_decode($date, true);
         $usd=$course['Cur_OfficialRate'];
-        $cars = Car::orderBy('id', 'DESC')->get();
+        $cars = Car::orderBy('id', 'DESC')->paginate(9);
         $paid = Car::orderBy('id', 'DESC')->paginate(5);
         $news = News::orderBy('id', 'DESC')->paginate(3);
         return view('index', compact('news', 'cars', 'paid', 'usd'));
