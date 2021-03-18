@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Author;
 use App\Models\Car;
+use App\Models\CarMark;
 use App\Models\Images;
 use App\Models\News;
 use Illuminate\Http\Request;
@@ -49,7 +50,8 @@ class SiteController extends Controller
     public function autoads()
     {
         $cars = Car::orderBy('id', 'DESC')->paginate(5);
-        return view('pages.autoads', compact('cars'));
+        $marks = CarMark::all();
+        return view('pages.autoads', compact('cars', 'marks'));
     }
 
     public function contacts()

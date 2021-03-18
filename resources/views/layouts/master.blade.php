@@ -87,7 +87,7 @@
                 <li><a href="{{ route('AutoAds') }}">Auto ads</a></li>
                 <li><a href="{{ route('news') }}">News</a></li>
                 <li><a href="{{ route('Contacts') }}">Contacts</a></li>
-                @if (Auth::user())
+                @if (Auth::id() == 2)
                 <li><a href="{{ route('admin') }}">Admin</a></li>
                 @endif
                 @if (Auth::user())

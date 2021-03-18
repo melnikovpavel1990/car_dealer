@@ -12,17 +12,16 @@
 
             <fieldset>
                 <label>Make:</label>
-
                 <select name="mark">
-                    <option selected=""></option>
-                    @foreach($cars as $car)
-                        <option value="{{$car->mark_id}}">{{$car->mark->mark}}</option>
+                    <option></option>
+                    @foreach($marks as $car)
+                        <option value="{{$car->id}}">{{$car->mark}}</option>
                     @endforeach
                 </select>
             </fieldset>
 
             <fieldset class="not-active">
-                
+
             </fieldset>
             @error('price_max')
             <div class="alert alert-danger">{{ $message }}</div>
@@ -31,7 +30,7 @@
                 <label for="price_min">Price min:</label>
 
                 <select name="price_min" id="price_min">
-                    <option selected=""></option>
+                    <option value="{{ request()->input('price_min')}}">{{ request()->input('price_min')}}</option>
                 @for($i=0; $i<=20000; $i+=1000)
                         <option>{{$i}}</option>
                     @endfor
@@ -41,8 +40,7 @@
             <fieldset>
                 <label for="price_max">Price max:</label>
                 <select name="price_max" id="price_max" >
-                    <option  selected="{{ old('price_max') }}"></option>
-                    @for($i=0; $i<=20000; $i+=1000)
+                    <option value="{{ request()->input('price_max')}}">{{ request()->input('price_max')}}</option>                    @for($i=0; $i<=20000; $i+=1000)
                         <option>{{$i}}</option>
                     @endfor
                 </select>
@@ -53,7 +51,7 @@
             <fieldset>
                 <label>Year from::</label>
                 <select name="year_from" id="year_from">
-                    <option selected=""></option>
+                    <option value="{{ request()->input('year_from')}}">{{ request()->input('year_from')}}</option>
 
                     @for($i=1980; $i<=2021; $i++)
                         <option>{{$i}}</option>
@@ -63,7 +61,7 @@
             <fieldset>
                 <label>Year to:</label>
                 <select name="year_to" id="year_to">
-                    <option selected="selected"></option>
+                    <option value="{{ request()->input('year_to')}}">{{ request()->input('year_to')}}</option>
                     @for($i=1980; $i<=2021; $i++)
                         <option>{{$i}}</option>
                     @endfor
@@ -83,6 +81,7 @@
                             conditioning:</label>
                     </p>
                     <p>
+
                         <label class="input-check"><input type="checkbox" value="1"
                                                           name="Bluetooth"/> Bluetooth:</label>
                     </p>

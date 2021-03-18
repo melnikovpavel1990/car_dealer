@@ -36,8 +36,12 @@
                                 <div class="five columns alpha">
 
                                     <p>
+                                    @error('mark_id')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                         <label>Mark:</label>
                                         <select name="mark_id">
+                                            <option></option>
                                             @foreach($marks as $mark)
                                                 <option value="{{$mark->id}}">{{$mark->mark}}</option>
                                             @endforeach
@@ -66,6 +70,9 @@
                                 <div class="five columns">
 
                                     <p class="not-active">
+                                    @error('mark_id')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                         <label>Model:</label>
                                         <select name="model_id">
                                             <script>
@@ -168,7 +175,8 @@
                                     <p class="three columns alpha">
                                         <label>Location:</label>
                                         <select name="location_id">
-                                            @foreach($locations as $location)
+                                            <option></option>
+                                        @foreach($locations as $location)
                                                 <option value="{{ $location->id }}">{{$location->location}}</option>
                                             @endforeach
                                         </select>

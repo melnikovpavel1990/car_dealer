@@ -24,7 +24,8 @@ class SearchRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+//            'price_max'=>'gt:price_min',
+//            'year_to'=>'gte:year_from'
         ];
     }
 }

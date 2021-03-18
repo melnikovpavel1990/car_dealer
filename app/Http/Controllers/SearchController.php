@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SearchRequest;
 use App\Models\Car;
+use App\Models\CarMark;
 use App\Models\Marka;
 use App\Models\Model;
 use App\Models\SearchModel;
@@ -40,8 +41,8 @@ class SearchController extends Controller
         }
 
         $cars = $query->paginate(22)->withPath($request->getQueryString());
-
-        return view('pages.autoads', compact('cars'));
+        $marks = CarMark::all();
+        return view('pages.autoads', compact('cars', 'marks'));
     }
 
 }

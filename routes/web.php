@@ -16,25 +16,17 @@ use Illuminate\Support\Facades\Route;
 Route::post('/', 'SiteController@index')->name('Home');
 
 Route::get('/', 'SiteController@index')->name('Home');
-//Route::get('/product/{id}', 'SiteController@product')->name('Product');
 Route::get('/news', 'SiteController@news')->name('news');
 Route::get('/new/{id}', 'SiteController@new')->name('new');
 Route::get('/autoads', 'SiteController@autoads')->name('AutoAds');
 Route::match(['get', 'post'], '/autoads/search', 'SearchController@index')->name('search');
 Route::get('/one_car/{id}', 'SiteController@one_car')->name('one_car');
-
 Route::get('/userAd', 'SiteController@userAd')->name('userAd');
-
-
-
 Route::match(['get', 'post'], '/contacts', 'SiteController@contacts')->name('Contacts');
 
 Route::get('/product/create', 'AddController@create')->name('PostAd.create');
 Route::get('/product/create-data', 'AddController@data');
-
 Route::post('/product/create', 'AddController@store')->name('PostAd.store');
-
-Route::get('/dropdown-data','DropdownController@data');
 Route::get('/product/{id}/edit', 'AddController@edit')->name('PostAd.edit');
 Route::put('/product/{id}/update', 'AddController@update')->name('PostAd.update');
 Route::delete('/product/{id}/destroy', 'AddController@destroy')->name('PostAd.destroy');
@@ -42,12 +34,13 @@ Route::delete('/product/{id}/destroy', 'AddController@destroy')->name('PostAd.de
 Route::post('/telegram', 'ContactController@telegram')->name('telegram');
 
 //Route::prefix('admins')->namespace('Admin')//->middleware(['role:admin'])
-//    ->group(function () {
-//        Route::get('/', 'AdminController@index')->name('admin');
-//        Route::resource('/news/', 'NewsController')->names('admin.news');
-//    });
+//->group(function () {
+//    Route::get('/', 'AdminController@index')->name('admin');
+//    Route::resource('/news/', 'NewsController')->names('admin.news');
+//    Route::resource('/cars/', 'CarsController')->names('admin.cars');
+//});
 
-Route::get('/admins', 'Admin\\AdminController@index')->name('admin');
+Route::get('/admins', 'Admin\\AdminController@index')->name('admin');//->middleware(['auth:admin']);
 Route::get('/admins/news', 'Admin\\NewsController@index')->name('admin.news');
 Route::get('/admins/news/create', 'Admin\\NewsController@create')->name('admin.news.create');
 Route::post('/admins/news/create', 'Admin\\NewsController@store')->name('admin.news.store');
@@ -59,19 +52,6 @@ Route::get('/admins/cars', 'Admin\\CarsController@index')->name('admin.cars');
 Route::delete('/admins/cars/{id}/destroy', 'Admin\\CarsController@destroy')->name('admin.cars.destroy');
 
 
-
-
-
-
-//Route::get('/admins/carmodel/create', 'Admin\\AdminController@create')->name('admin_car_model_create');
-//Route::post('/admins/carmodel/create', 'Admin\\AdminController@store')->name('admin_model_store');
-//Route::get('/admins/carmodel/{id}/create', 'Admin\\AdminController@edit')->name('admin_model_edit');
-//Route::prefix('admins')->namespace('Admin')//->middleware(['role:admin'])
-//    ->group(function () {
-//        Route::get('/', 'AdminController@index')->name('dashboard');
-//        Route::resource('/news', 'NewsController')->names('admin.news');
-//        Route::resource('/company', 'CompanyController')->names('admin.company');
-//    });
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Auth::routes();
