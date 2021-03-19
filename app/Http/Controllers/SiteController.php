@@ -49,7 +49,17 @@ class SiteController extends Controller
 
     public function autoads()
     {
-        $cars = Car::orderBy('id', 'DESC')->paginate(5);
+        $cars = Car::orderBy('id', 'DESC')
+            ->with('mark')
+            ->with('model')
+            ->with('mark')
+            ->with('location')
+            ->with('city')
+            ->with('transmission')
+            ->with('fuel')
+            ->with('images')
+            ->with('fuel')
+            ->paginate(5);
         $marks = CarMark::all();
         return view('pages.autoads', compact('cars', 'marks'));
     }

@@ -154,6 +154,6 @@ class AddController extends Controller
         $img = Images::where('car_id', '=', $car->id);
         $img->delete();
         $car->delete();
-        return redirect()->route('admin.cars');
+        return redirect()->route('AutoAds');
     }
 }

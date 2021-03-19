@@ -48,6 +48,9 @@ class Car extends Model
     public function images(){
         return $this->hasMany(Images::class);
     }
+    public function marks(){
+        return $this->hasMany(Images::class);
+    }
 
     public function color(){
         return $this->belongsTo(Color::class);
